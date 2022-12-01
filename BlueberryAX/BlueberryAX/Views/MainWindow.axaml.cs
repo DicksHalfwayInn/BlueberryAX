@@ -7,6 +7,7 @@ namespace BlueberryAX.Views
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

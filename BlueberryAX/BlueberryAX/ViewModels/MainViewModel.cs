@@ -1,7 +1,27 @@
-﻿namespace BlueberryAX.ViewModels
+﻿
+using Avalonia.Controls;
+
+namespace BlueberryAX
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel
     {
-        public string Greeting => "Welcome to Avalonia!";
+        #region Public Properties
+
+        //public double 
+
+        public static MainViewModel Instance = default!;
+
+        #endregion
+
+        #region Constructor
+
+        public MainViewModel()
+        {
+            if (Avalonia.Controls.Design.IsDesignMode)
+                Instance = new MainViewModel();
+        }
+
+        #endregion
+
     }
 }
