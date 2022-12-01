@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using BlueberryAX.ViewModels;
 using System;
 
 namespace BlueberryAX
@@ -25,7 +24,7 @@ namespace BlueberryAX
 
         public bool Match(object? data)
         {
-            return data is ViewModelBase;
+            return false;
         }
     }
 }
