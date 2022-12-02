@@ -18,14 +18,14 @@ namespace BlueberryAX
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new ContainerViewModel()
                 };
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                singleViewPlatform.MainView = new MainView
+                singleViewPlatform.MainView = new LoginView
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new ContainerViewModel()
                 };
             }
 
