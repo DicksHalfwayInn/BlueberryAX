@@ -16,6 +16,6 @@
 		Background="Transparent"
 		IsHitTestVisible="False">
 
-		<views:MainView />
+		<views:LoginView />
 	
 </Window>
