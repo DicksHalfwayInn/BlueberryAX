@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace BlueberryAX.Views
 {
-    public partial class InfographicUIControl : UserControl
+    public partial class MainView : UserControl
     {
-        public InfographicUIControl()
+        public MainView()
         {
             InitializeComponent();
         }

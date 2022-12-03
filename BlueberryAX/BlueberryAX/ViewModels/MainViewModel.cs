@@ -3,24 +3,22 @@ using Avalonia.Controls;
 
 namespace BlueberryAX
 {
-    public class LoginViewModel
+    public class MainViewModel
     {
         #region Public Properties
 
         //public double 
 
-        public static LoginViewModel Instance = default!;
-
-        public string Greeting = "Hello Kingston";
+        public static MainViewModel Instance = default!;
 
         #endregion
 
         #region Constructor
 
-        public LoginViewModel()
+        public MainViewModel()
         {
             if (Avalonia.Controls.Design.IsDesignMode)
-                Instance = new LoginViewModel();
+                Instance = new MainViewModel();
         }
 
         #endregion

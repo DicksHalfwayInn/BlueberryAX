@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             mc:Ignorable="d" 
 			 Width="600" Height="450"
-             x:Class="BlueberryAX.Views.LoginView"
+             x:Class="BlueberryAX.Views.MainView"
              xmlns:mainview="using:BlueberryAX.Views"
 			 Design.DataContext="{Binding MainViewModel.Instance}">
 
@@ -23,11 +23,13 @@
 					<Border Background="White"
 						CornerRadius="20"
 						Height="30" Width="30" />
+					
 				</Border>
 			</Border>
 
 			<!-- Separator -->
 			<Grid Grid.Column="1">
+				
 				<!-- Separator -->
 				<Border Grid.Column="0"
 						VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -40,13 +42,13 @@
 							<GradientStop Offset="1.0" Color="white"/>
 						</LinearGradientBrush>
 					</Border.BorderBrush>
+					
 				</Border>
+				
 			</Grid>
-
-			<Grid Grid.Column="2">
-				<Label HorizontalAlignment="Left" VerticalAlignment="Center"
-					   Foreground="Black" Content="Hi Kingston" />
-			</Grid>
+			
 		</Grid>
+		
 	</Border>
+
 </UserControl>

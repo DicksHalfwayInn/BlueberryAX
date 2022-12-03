@@ -22,10 +22,4 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\LoginView.axaml.cs">
-      <DependentUpon>LoginView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
