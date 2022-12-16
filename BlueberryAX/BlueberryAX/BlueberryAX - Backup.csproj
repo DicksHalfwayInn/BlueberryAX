@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Styles\" />
+    <Folder Include="Assets\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
