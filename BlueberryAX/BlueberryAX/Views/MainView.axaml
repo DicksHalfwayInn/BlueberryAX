@@ -2,7 +2,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:valueConverters="clr-namespace:BlueberryAX.ValueConverters"
              mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
-             x:Class="BlueberryAX.Views.MainView">
-  Welcome to Avalonia!
+             x:Class="BlueberryAX.Views.MainView"
+	         Foreground="White"
+             Background="#171C2C">
+
+	<!-- Set up the resources for the UserControl to be able to find value converter -->
+	<UserControl.Resources>
+		<valueConverters:CheckedToRotationConverter x:Key="CheckedToRotationConverter"></valueConverters:CheckedToRotationConverter>
+	</UserControl.Resources>
+
+	<!-- Set up the Styles for UserControl -->
+	<UserControl.Styles>
+		<!-- Set up the style for Button.small -->
+		<Style Selector="Button.small">
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="Foreground" Value="White"></Setter>
+			<Setter Property="Background" Value="{DynamicResource BrightBlueBrush}"></Setter>
+			<Setter Property="CornerRadius" Value="20"></Setter>
+			<Setter Property="Padding" Value="7, 2"></Setter>
+		</Style>
+
+		<!-- Set up the style for Button:pointerover Background -->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource BrightBlueHoverBrush}"></Setter>
+		</Style>
+
+		<!-- Set up the style for Button:pointerover TextBlock.Foreground (button) -->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="TextBlock.Foreground" Value="White"></Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<!-- Main Grid -->
+	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua">
+
+		<!-- Title Bar -->
+		<Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, *, Auto, Auto"
+			  Background="{DynamicResource MediumGreyBrush}">
+
+			<!-- Grid Styles:  Title Bar -->
+			<Grid.Styles>
+				<Style Selector="Button">
+					<Setter Property="FontSize" Value="20"></Setter>
+				    <Setter Property="Foreground" Value="White"></Setter>
+				<Setter Property="Padding" Value="20,10"></Setter>
+				<Setter Property="Margin" Value="5"></Setter>
+				<Setter Property="Background" Value="{DynamicResource LightBlueBrush}"></Setter>
+				</Style>
+			</Grid.Styles>
+
+			<!-- Food button -->
+			<Button Grid.Column="0"
+					Content="Food" />
+
+			<!-- Exersize button -->
+		    <Button Grid.Column="1" Content="Exersize" ></Button>
+		
+	<Button Grid.Column="3" Content="Insulin" ></Button>
+			
+			<Button Grid.Column="4" Content="Glucose"></Button>
+		
+	
+		</Grid>
+	</Grid>
+
 </UserControl>

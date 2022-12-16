@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
 		Width="1048" Height="645"
-		
+		Title="Blueberry AX - Desktop"
         xmlns:views="clr-namespace:BlueberryAX.Views"
         x:Class="BlueberryAX.Views.MainWindow"
 		>
