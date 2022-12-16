@@ -3,19 +3,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-		Width="600" Height="450"
-		CanResize="False"
-        xmlns:vm="using:BlueberryAX.ViewModels"
+		Width="1048" Height="645"
+		
         xmlns:views="clr-namespace:BlueberryAX.Views"
         x:Class="BlueberryAX.Views.MainWindow"
-		Classes="mainWindow"
-		TransparencyLevelHint="Transparent"
-		ExtendClientAreaToDecorationsHint="True"
-		ExtendClientAreaChromeHints="NoChrome"
-		ExtendClientAreaTitleBarHeightHint="450"
-		Background="Transparent"
-		IsHitTestVisible="False">
+		>
 
-		<views:LoginView />
+		<views:MainView />
 	
 </Window>
