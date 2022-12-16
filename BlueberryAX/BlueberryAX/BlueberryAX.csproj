@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Styles\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
