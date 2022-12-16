@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using BlueberryAX.ViewModels;
 using BlueberryAX.Views;
 
 namespace BlueberryAX
@@ -14,18 +15,22 @@ namespace BlueberryAX
 
         public override void OnFrameworkInitializationCompleted()
         {
+
+            // Initialize the dependencies
+            var mainViewModel = new MainViewModel();
+
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new ContainerViewModel()
+                    DataContext = mainViewModel
                 };
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                singleViewPlatform.MainView = new LoginView
+                singleViewPlatform.MainView = new MainWindow
                 {
-                    DataContext = new ContainerViewModel()
+                    DataContext = mainViewModel
                 };
             }
 
