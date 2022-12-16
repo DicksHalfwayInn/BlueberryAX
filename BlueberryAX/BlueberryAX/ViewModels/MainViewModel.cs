@@ -51,20 +51,20 @@ namespace BlueberryAX.ViewModels
         //    ChannelConfigurationListIsOpen = false;
         //}
 
-        //[RelayCommand]
-        //private async Task LoadSettingsAsync()
-        //{
+        [RelayCommand]
+        private async Task LoadSettingsAsync()
+        {
 
-        //await Task.Delay(2000);
+            await Task.Delay(2000);
 
-        //    // Get the channel configuration data
-        //    //var channelConfigurations = await mAudioInterfaceService.GetChannelConfigurationsAsync();
+            // Get the channel configuration data
+            //var channelConfigurations = await mAudioInterfaceService.GetChannelConfigurationsAsync();
 
-        //    // Create a grouping from the flat data
-        //    //ChannelConfigurations =
-        //    //    new ObservableGroupedCollection<string, ChannelConfigurationItem>(
-        //    //        channelConfigurations.GroupBy(item => item.Group));
-        //}
+            // Create a grouping from the flat data
+            //ChannelConfigurations =
+            //    new ObservableGroupedCollection<string, ChannelConfigurationItem>(
+            //        channelConfigurations.GroupBy(item => item.Group));
+        }
 
         #endregion
 

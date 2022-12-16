@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:valueConverters="clr-namespace:BlueberryAX.ValueConverters"
+			 xmlns:controls="clr-namespace:BlueberryAX"
              mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
              x:Class="BlueberryAX.Views.MainView"
 	         Foreground="White"
@@ -38,6 +39,8 @@
 	<!-- Main Grid -->
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua">
 
+
+
 		<!-- Title bar -->
 		<Grid Grid.Row="0" Background="Beige">
 			<Grid ColumnDefinitions="*, Auto">
@@ -65,6 +68,12 @@
 
 			<!-- Food button -->
 			<Button Grid.Column="0"	Content="Food" />
+
+			<!--<Button Grid.Column="0"
+                    Name="ChannelConfigurationButton"
+                    Content="{Binding ChannelConfigurationButtonText}"
+                    Command="{Binding #ChannelConfigurationPopup.BeginOpen}"
+                    Margin="0,0,8,0" />-->
 
 			<!-- Exersize button -->
 			<Button Grid.Column="1" Content="Exersize" ></Button>
