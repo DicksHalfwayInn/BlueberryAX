@@ -37,9 +37,13 @@
 
 	<!-- Main Grid -->
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua">
-		
+
+		<!-- Title bar -->
 		<Grid Grid.Row="0" Background="Beige">
-			<Label Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
+			<Grid ColumnDefinitions="*, Auto">
+				<Label Grid.Column="0" Grid.ColumnSpan="2" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
+				<Button Grid.Column="1" Content="User:  John Doe" ></Button>
+			</Grid>
 		</Grid>
 
 		<!-- Footer Bar -->
@@ -67,7 +71,7 @@
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" ></Button>
-			
+
 			<!-- Glucose button -->
 			<Button Grid.Column="4" Content="Glucose"></Button>
 
