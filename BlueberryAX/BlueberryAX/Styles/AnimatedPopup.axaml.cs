@@ -406,7 +406,7 @@ namespace BlueberryAX
                     mOriginalOpacity = Opacity;
 
                     // Hide control
-                    Opacity = 0;
+                    //Opacity = 0;
                 }
 
                 mSizingTimer.Change(100, int.MaxValue);

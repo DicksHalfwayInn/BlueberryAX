@@ -19,11 +19,11 @@ namespace BlueberryAX.ViewModels
 
         #region Public Properties
 
-        [ObservableProperty] private string _boldTitle = "AVALONIA";
+        [ObservableProperty] private string boldTitle = "AVALONIA";
 
-        [ObservableProperty] private string _regularTitle = "LOUDNESS METER";
+        [ObservableProperty] private string regularTitle = "LOUDNESS METER";
 
-        [ObservableProperty] private bool _channelConfigurationListIsOpen = true;
+        [ObservableProperty] private bool foodEntryPopupIsOpen = false;
 
         //[ObservableProperty]
         //private ObservableGroupedCollection<string, ChannelConfigurationItem> _channelConfigurations = default!;
@@ -39,7 +39,10 @@ namespace BlueberryAX.ViewModels
         #region Public Commands
 
         [RelayCommand]
-        private void ChannelConfigurationButtonPressed() => ChannelConfigurationListIsOpen ^= true;
+        private void FoodEntryButtonPressed()
+        {
+            FoodEntryPopupIsOpen ^= true;
+        }
 
         //[RelayCommand]
         //private void ChannelConfigurationItemPressed(ChannelConfigurationItem item)

@@ -8,6 +8,8 @@
              x:Class="BlueberryAX.Views.MainView"
 	         Foreground="White"
              Background="#171C2C">
+	
+
 
 	<!-- Set up the resources for the UserControl to be able to find value converter -->
 	<UserControl.Resources>
@@ -39,7 +41,16 @@
 	<!-- Main Grid -->
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua">
 
-
+		<!-- Food Entry Popup -->
+		<controls:AnimatedPopup
+			Grid.Row="0"
+			Grid.RowSpan="3"
+			AnimationTime="0:0:0.1"
+			Name="FoodEntryPopup"
+			Open="{Binding FoodEntryPopupIsOpen, Mode=TwoWay}"
+			>
+			<Label Content="Label" Background="Red"></Label>
+		</controls:AnimatedPopup>
 
 		<!-- Title bar -->
 		<Grid Grid.Row="0" Background="Beige">
@@ -67,7 +78,10 @@
 			</Grid.Styles>
 
 			<!-- Food button -->
-			<Button Grid.Column="0"	Content="Food" />
+			<Button Grid.Column="1"
+					Name="FoodEntryButton"
+					Command="{Binding #FoodEntryPopup.BeginOpen}"
+			        Content="Food" />
 
 			<!--<Button Grid.Column="0"
                     Name="ChannelConfigurationButton"
@@ -76,7 +90,7 @@
                     Margin="0,0,8,0" />-->
 
 			<!-- Exersize button -->
-			<Button Grid.Column="1" Content="Exersize" ></Button>
+			<Button Grid.Column="0" Content="Exersize" ></Button>
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" ></Button>
