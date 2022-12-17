@@ -45,18 +45,40 @@
 		<controls:AnimatedPopup
 			Grid.Row="0"
 			Grid.RowSpan="3"
-			AnimationTime="0:0:0.1"
+			
 			Name="FoodEntryPopup"
 			Open="{Binding FoodEntryPopupIsOpen, Mode=TwoWay}"
+			
+			AnimationTime="0:0:0.1"
 			>
-			<Label Content="Label" Background="Red"></Label>
+			<Label Content="Label" Height="500" Width="500" Background="Red"></Label>
+		</controls:AnimatedPopup>
+
+		<!-- User Entry Popup -->
+		<controls:AnimatedPopup
+			Grid.Row="0"
+			Grid.RowSpan="3"
+			
+			Name="UserEntryPopup"
+			Open="{Binding UserEntryPopupIsOpen, Mode=TwoWay}"
+			
+			AnimationTime="0:0:0.1"
+			>
+			<Label Content="Label" Height="500" Width="500" Background="Green"></Label>
+			
 		</controls:AnimatedPopup>
 
 		<!-- Title bar -->
 		<Grid Grid.Row="0" Background="Beige">
 			<Grid ColumnDefinitions="*, Auto">
 				<Label Grid.Column="0" Grid.ColumnSpan="2" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
-				<Button Grid.Column="1" Content="User:  John Doe" ></Button>
+
+				<!-- User button -->
+				<Button Grid.Column="1" 
+						Name="UserEntryButton"
+						Command="{Binding #UserEntryPopup.BeginOpen}"
+						Content="User:  John Doe" ></Button>
+
 			</Grid>
 		</Grid>
 
@@ -77,20 +99,15 @@
 				</Style>
 			</Grid.Styles>
 
+
+			<!-- Exersize button -->
+			<Button Grid.Column="0" Content="Exersize" ></Button>
+
 			<!-- Food button -->
 			<Button Grid.Column="1"
 					Name="FoodEntryButton"
 					Command="{Binding #FoodEntryPopup.BeginOpen}"
 			        Content="Food" />
-
-			<!--<Button Grid.Column="0"
-                    Name="ChannelConfigurationButton"
-                    Content="{Binding ChannelConfigurationButtonText}"
-                    Command="{Binding #ChannelConfigurationPopup.BeginOpen}"
-                    Margin="0,0,8,0" />-->
-
-			<!-- Exersize button -->
-			<Button Grid.Column="0" Content="Exersize" ></Button>
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" ></Button>

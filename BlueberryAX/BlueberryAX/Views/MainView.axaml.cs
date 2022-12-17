@@ -14,6 +14,10 @@ namespace BlueberryAX.Views
 
         private Control mFoodEntryPopup;
         private Control mFoodEntryButton;
+
+        private Control mUserEntryPopup;
+        private Control mUserEntryButton;
+
         private Control mMainGrid;
 
         #endregion
@@ -31,6 +35,10 @@ namespace BlueberryAX.Views
             // Gather the named controls
             mFoodEntryButton = this.FindControl<Control>("FoodEntryButton") ?? throw new System.Exception("Cannot find Food Entry Button by name");
             mFoodEntryPopup = this.FindControl<Control>("FoodEntryPopup") ?? throw new System.Exception("Cannot find Food Entry Popup by name");
+
+            mUserEntryButton = this.FindControl<Control>("UserEntryButton") ?? throw new System.Exception("Cannot find User Entry Button by name");
+            mUserEntryPopup = this.FindControl<Control>("UserEntryPopup") ?? throw new System.Exception("Cannot find User Entry Popup by name");
+
             mMainGrid = this.FindControl<Control>("MainGrid") ?? throw new System.Exception("Cannot find Main Grid by name");
         }
 
@@ -38,7 +46,10 @@ namespace BlueberryAX.Views
 
         protected override async void OnLoaded()
         {
-            await ((MainViewModel)DataContext).LoadSettingsCommand.ExecuteAsync(null);
+            if (DataContext!= null)
+            {
+                await ((MainViewModel)DataContext).LoadSettingsCommand.ExecuteAsync(null);
+            }
 
             base.OnLoaded();
         }
@@ -53,12 +64,28 @@ namespace BlueberryAX.Views
                 var position = mFoodEntryButton.TranslatePoint(new Point(), mMainGrid) ??
                                throw new Exception("Cannot get TranslatePoint from Configuration Button");
 
+
                 // Set margin of popup so it appears bottom left of button
                 mFoodEntryPopup.Margin = new Thickness(
                     position.X,
                     0,
                     0,
                     mMainGrid.Bounds.Height - position.Y - mFoodEntryButton.Bounds.Height);
+            });
+
+            Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                // Get relative position of button, in relation to main grid
+                var position = mUserEntryButton.TranslatePoint(new Point(), mMainGrid) ??
+                               throw new Exception("Cannot get TranslatePoint from Configuration Button");
+
+
+                // Set margin of popup so it appears bottom left of button
+                mUserEntryPopup.Margin = new Thickness(
+                    position.X,
+                    0,
+                    0,
+                    mMainGrid.Bounds.Height - position.Y - mUserEntryButton.Bounds.Height);
             });
         }
 
