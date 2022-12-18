@@ -60,10 +60,9 @@ namespace BlueberryAX.ViewModels
             }
         }
 
-        private string password = "Password";
+        private string password;
 
-        [ObservableProperty]
-        private bool passwordIsNotEditing = true;
+        
 
         /// <summary>
         /// The Password which changes to just the key pressed when it changes for the first time
@@ -71,33 +70,8 @@ namespace BlueberryAX.ViewModels
         public string Password
         {
             get => password;
-            set
-            {
-                if (value != password && password == "Password")
-                {
-                    var i = 0;
-                    foreach (var c in value)
-                    {
-                        char ch = password[i];
-                        if (!(ch == c))
-                        {
-                            password = value[i].ToString();
-                            return;
-                        }
-                        i++;
-                    }
-
-                }
-                if (value.Length == 0)
-                {
-                    value = "Password";
-
-                    PasswordIsNotEditing = true;
-                }
-                SetProperty(ref password, value);
-
-                PasswordIsNotEditing = false;
-            }
+            set => SetProperty(ref password, value);
+            
         }
 
 
