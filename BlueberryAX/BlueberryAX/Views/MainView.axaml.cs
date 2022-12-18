@@ -94,7 +94,7 @@ namespace BlueberryAX.Views
 
 
                 // Set margin of popup so it appears top right of button
-                mUserEntryPopup.Margin = new Thickness(
+                mUserEntryPopup.Margin = new Thickness( 
                 0,
                 position.Y,
                 mMainGrid.Bounds.Width - position.X - mUserEntryButton.Bounds.Width ,
@@ -110,10 +110,11 @@ namespace BlueberryAX.Views
 
                 // Set margin of popup so it appears bottom right of button
                 mGlucoseEntryPopup.Margin = new Thickness(
-                    position.X,
                     0,
                     0,
-                    mMainGrid.Bounds.Height - position.Y - mGlucoseEntryButton.Bounds.Height);
+                    mMainGrid.Bounds.Width - position.X - mGlucoseEntryButton.Bounds.Width,
+                    mMainGrid.Bounds.Height - position.Y - mGlucoseEntryButton.Bounds.Height
+                    );
             });
         }
 

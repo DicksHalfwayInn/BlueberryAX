@@ -43,8 +43,8 @@
 
 		<!-- Food Entry Popup -->
 		<controls:AnimatedPopup
-			Grid.Row="1"
-			Grid.RowSpan="2"
+			Grid.Row="0"
+			Grid.RowSpan="3"
 			HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
 			Name="FoodEntryPopup"
@@ -59,7 +59,7 @@
 		<!-- User Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="0"
-			Grid.RowSpan="2"
+			Grid.RowSpan="3"
 			Name="UserEntryPopup"
 			Open="{Binding UserEntryPopupIsOpen, Mode=TwoWay}"
             HorizontalAlignment="Right"
@@ -84,6 +84,7 @@
 
 						</Style>
 
+						<!-- Special: Button properties just for Login Dropin Popdown -->
 						<Style Selector="Button.login">
 							<Setter Property="FontSize" Value="30"></Setter>
 							<!--<Setter Property="Background" Value=""></Setter>-->
@@ -160,7 +161,7 @@
 					</Border>
 
 					<StackPanel Grid.Row="8" Orientation="Horizontal">
-						<Button Classes="login" Content="Log In" Background="LightGreen" Margin="0,0,50,0"></Button>
+						<Button Classes="login" Content="Log In" Background="LightGreen" Command="{Binding LoginCommand}" Margin="0,0,50,0"></Button>
 						<Button Classes="login" Content="Cancel" Background="Red"></Button>
 
 					</StackPanel>
@@ -177,7 +178,7 @@
 		<!-- Glucose Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="0"
-			Grid.RowSpan="2"
+			Grid.RowSpan="3"
 			Name="GlucoseEntryPopup"
 			Open="{Binding GlucoseEntryPopupIsOpen, Mode=TwoWay}"
             HorizontalAlignment="Right"

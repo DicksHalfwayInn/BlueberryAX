@@ -1,9 +1,12 @@
 ﻿using Avalonia.Data;
+using BlueberryAX.DataModels;
+using BlueberryAX.Services;
 using CommunityToolkit.Mvvm.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +17,8 @@ namespace BlueberryAX.ViewModels
     {
         #region Private Members
 
-        //private readonly IAudioInterfaceService mAudioInterfaceService;
+        private readonly IUserService mUserService;
+
 
 
         #endregion
@@ -26,6 +30,8 @@ namespace BlueberryAX.ViewModels
         [ObservableProperty] private string regularTitle = "LOUDNESS METER";
 
         [ObservableProperty] private bool foodEntryPopupIsOpen = false;
+
+        [ObservableProperty] private ObservableCollection<UserModel> validUsers = default!;
 
         private string emailAddress = "Email@Address.com";
 
@@ -70,8 +76,12 @@ namespace BlueberryAX.ViewModels
         public string Password
         {
             get => password;
-            set => SetProperty(ref password, value);
-            
+            set
+            {
+                SetProperty(ref password, value);
+
+            }
+
         }
 
 
@@ -95,6 +105,12 @@ namespace BlueberryAX.ViewModels
             FoodEntryPopupIsOpen ^= true;
         }
 
+        [RelayCommand]
+        private void Login()
+        {
+
+        }
+
         //[RelayCommand]
         //private void ChannelConfigurationItemPressed(ChannelConfigurationItem item)
         //{
@@ -109,37 +125,31 @@ namespace BlueberryAX.ViewModels
         private async Task LoadSettingsAsync()
         {
 
-            await Task.Delay(2000);
+            ValidUsers = new ObservableCollection<UserModel>(await mUserService.GetValidUsersAsync());
 
-            // Get the channel configuration data
-            //var channelConfigurations = await mAudioInterfaceService.GetChannelConfigurationsAsync();
-
-            // Create a grouping from the flat data
-            //ChannelConfigurations =
-            //    new ObservableGroupedCollection<string, ChannelConfigurationItem>(
-            //        channelConfigurations.GroupBy(item => item.Group));
+    
         }
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
-        ///     Default constructor
+        /// Default Constructor
         /// </summary>
-        /// <param name="audioInterfaceService">The audio interface service</param>
-        //public MainViewModel(IAudioInterfaceService audioInterfaceService)
-        //{
-        //    mAudioInterfaceService = audioInterfaceService;
-        //}
+        /// <param name="userService">The valid users service</param>
+        public MainViewModel(IUserService userService )
+        {
+            mUserService = userService;
+        }
 
         /// <summary>
         ///     Design-time constructor
         /// </summary>
-        //public MainViewModel()
-        //{
-        //    mAudioInterfaceService = new DummyAudioInterfaceService();
-        //}
+        public MainViewModel()
+        {
+            mUserService = new DummyValidUsersService();
+        }
 
         #endregion
     }
