@@ -11,8 +11,7 @@
 	<Style Selector="controls|AnimatedPopup">
 		<!-- Set Defaults -->
 		<Setter Property="ZIndex" Value="10"></Setter>
-		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
-		<Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+		
 
 		<Setter Property="Template">
 			<ControlTemplate>

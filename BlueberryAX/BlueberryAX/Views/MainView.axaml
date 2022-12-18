@@ -39,48 +39,52 @@
 	</UserControl.Styles>
 
 	<!-- Main Grid -->
-	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua">
+	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua" >
+
+    <!-- Title bar -->
+    <Grid Grid.Row="0" 
+          ColumnDefinitions="*, Auto"
+          Background="Beige" >
+      <Label Grid.Column="0" Grid.ColumnSpan="2" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
+
+      <!-- User button -->
+      <Button Grid.Column="1"
+					Name="UserEntryButton"
+					Command="{Binding #UserEntryPopup.BeginOpen}"
+					Content="User:  John Doe" ></Button>
+
+    </Grid>
 
 		<!-- Food Entry Popup -->
 		<controls:AnimatedPopup
-			Grid.Row="0"
-			Grid.RowSpan="3"
-			
+			Grid.Row="1"
+			Grid.RowSpan="2"
+			HorizontalAlignment="Left"
+      VerticalAlignment="Bottom"
 			Name="FoodEntryPopup"
+      
 			Open="{Binding FoodEntryPopupIsOpen, Mode=TwoWay}"
 			
 			AnimationTime="0:0:0.1"
 			>
-			<Label Content="Label" Height="500" Width="500" Background="Red"></Label>
+			<Label Content="Label" Height="400" Width="400" Background="Red"></Label>
 		</controls:AnimatedPopup>
 
 		<!-- User Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="0"
-			Grid.RowSpan="3"
+			Grid.RowSpan="2"
 			
 			Name="UserEntryPopup"
 			Open="{Binding UserEntryPopupIsOpen, Mode=TwoWay}"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Top"
 			
 			AnimationTime="0:0:0.1"
 			>
-			<Label Content="Label" Height="500" Width="500" Background="Green"></Label>
+			<Label Content="Label" Height="300" Width="300" Background="Green"></Label>
 			
 		</controls:AnimatedPopup>
-
-		<!-- Title bar -->
-		<Grid Grid.Row="0" Background="Beige">
-			<Grid ColumnDefinitions="*, Auto">
-				<Label Grid.Column="0" Grid.ColumnSpan="2" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
-
-				<!-- User button -->
-				<Button Grid.Column="1" 
-						Name="UserEntryButton"
-						Command="{Binding #UserEntryPopup.BeginOpen}"
-						Content="User:  John Doe" ></Button>
-
-			</Grid>
-		</Grid>
 
 		<!-- Footer Bar -->
 		<Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, *, Auto, Auto"
@@ -95,6 +99,7 @@
 					<Setter Property="Margin" Value="5"></Setter>
 					<Setter Property="Background" Value="{DynamicResource LightBlueBrush}"></Setter>
 					<Setter Property="Width" Value="120"></Setter>
+					<Setter Property="Height" Value="100"></Setter>
 					<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
 				</Style>
 			</Grid.Styles>
@@ -107,7 +112,7 @@
 			<Button Grid.Column="1"
 					Name="FoodEntryButton"
 					Command="{Binding #FoodEntryPopup.BeginOpen}"
-			        Content="Food" />
+			    Content="Food" />
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" ></Button>
