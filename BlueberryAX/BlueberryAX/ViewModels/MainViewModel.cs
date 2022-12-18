@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Collections;
+﻿using Avalonia.Data;
+using CommunityToolkit.Mvvm.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
@@ -15,6 +16,7 @@ namespace BlueberryAX.ViewModels
 
         //private readonly IAudioInterfaceService mAudioInterfaceService;
 
+
         #endregion
 
         #region Public Properties
@@ -24,6 +26,81 @@ namespace BlueberryAX.ViewModels
         [ObservableProperty] private string regularTitle = "LOUDNESS METER";
 
         [ObservableProperty] private bool foodEntryPopupIsOpen = false;
+
+        private string emailAddress = "Email@Address.com";
+
+        /// <summary>
+        /// The Email Address which changes to just the key pressed when it changes for the first time
+        /// </summary>
+        public string EmailAddress
+        {
+            get => emailAddress;
+            set
+            {
+                if (value != emailAddress && emailAddress == "Email@Address.com")
+                {
+                    var i = 0;
+                    foreach (var c in value)
+                    {
+                        char ch = emailAddress[i];
+                        if (!(ch == c))
+                        {
+                            emailAddress = value[i].ToString();
+                            return;
+                        }
+                        i++;
+                    }
+
+                }
+                if (value.Length == 0)
+                {
+                    value = "Email@Address.com";
+                }
+                SetProperty(ref emailAddress, value);
+            }
+        }
+
+        private string password = "Password";
+
+        [ObservableProperty]
+        private bool passwordIsNotEditing = true;
+
+        /// <summary>
+        /// The Password which changes to just the key pressed when it changes for the first time
+        /// </summary>
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (value != password && password == "Password")
+                {
+                    var i = 0;
+                    foreach (var c in value)
+                    {
+                        char ch = password[i];
+                        if (!(ch == c))
+                        {
+                            password = value[i].ToString();
+                            return;
+                        }
+                        i++;
+                    }
+
+                }
+                if (value.Length == 0)
+                {
+                    value = "Password";
+
+                    PasswordIsNotEditing = true;
+                }
+                SetProperty(ref password, value);
+
+                PasswordIsNotEditing = false;
+            }
+        }
+
+
 
         //[ObservableProperty]
         //private ObservableGroupedCollection<string, ChannelConfigurationItem> _channelConfigurations = default!;

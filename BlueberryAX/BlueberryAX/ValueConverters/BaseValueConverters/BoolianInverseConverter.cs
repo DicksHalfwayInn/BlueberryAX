@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace AvaloniaAX.ValueConverters
 {
+
     /// <summary>
     /// multiply the input numirical value with the choosen parameter
     /// </summary>
-    public class BoolianInverseConverter : BaseValueConverter<BoolianInverseConverter>
+    public class BooleanToIsVisibleConverter : BaseValueConverter<BooleanToIsVisibleConverter>
     {
         public override object Convert(object value, Type targetType = null, object parameter = null, CultureInfo culture = null)
         {
+            if ((bool)value)
+            {
+                return true;
+            }
             return !(bool)value;
 
         }

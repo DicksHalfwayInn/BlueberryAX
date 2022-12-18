@@ -9,8 +9,6 @@
 	         Foreground="White"
              Background="#171C2C">
 
-
-
 	<!-- Set up the resources for the UserControl to be able to find value converter -->
 	<UserControl.Resources>
 		<valueConverters:CheckedToRotationConverter x:Key="CheckedToRotationConverter"></valueConverters:CheckedToRotationConverter>
@@ -41,6 +39,8 @@
 	<!-- Main Grid -->
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua" >
 
+		<!--#region Main Grid Popups -->
+
 		<!-- Food Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="1"
@@ -67,7 +67,94 @@
 			AnimationTime="0:0:0.1">
 
 			<!-- The Content in the User Entry Popup -->
-			<Label Content="Label" Height="300" Width="600" Background="Green"></Label>
+
+			<Border Background="white" BorderBrush="DarkGray" BorderThickness="2"  CornerRadius="10">
+
+				<Grid RowDefinitions="Auto, Auto, Auto,Auto, Auto, Auto,Auto,Auto, *" Width="300" Height="450" Margin="20,50,20,35" >
+
+					<!-- Grid Styles:  For the User Entry Popup -->
+					<Grid.Styles>
+						<!-- Styles for Labels in the Popup Grid -->
+						<Style Selector="Label">
+							<Setter Property="HorizontalAlignment" Value="Center"></Setter>
+						</Style>
+
+						<!-- Styles for TextBox's in the Popup Grid -->
+						<Style Selector="TextBox">
+
+						</Style>
+					</Grid.Styles>
+
+					<!-- Log In Label -->
+					<Label Grid.Row="0" Content="Log In" FontSize="25"></Label>
+
+					<!-- The Gradient line Kinston used in his login but trying to get it to work horizontally -->
+					<Border Grid.Row="1"
+						HorizontalAlignment="Center"
+						BorderBrush="Gray" BorderThickness="0 5 0 0"
+						Width="200" >
+						<Border.BorderBrush>
+							<LinearGradientBrush StartPoint="0%,100%" EndPoint="0%,0%">
+								<GradientStop Offset="0.0" Color="white"/>
+								<GradientStop Offset="0.5" Color="Gray"/>
+								<GradientStop Offset="1.0" Color="white"/>
+							</LinearGradientBrush>
+						</Border.BorderBrush>
+					</Border>
+
+					<!-- Email Label -->
+					<Label Grid.Row="2" FontSize="30" Content="Email" Padding="0,30,0,0" />
+
+					<!-- Email Entry -->
+					<TextBox  Grid.Row="3" BorderBrush="Transparent"  FontSize="20" PasswordChar="" HorizontalContentAlignment="Center"
+							 Text="{Binding EmailAddress}" Margin="0,20,0,0"></TextBox>
+
+					<!-- Underline for the Email Entry -->
+					<Border Grid.Row="4"
+							Margin="0,5,0,0"
+						    HorizontalAlignment="Center"
+						    BorderBrush="Gray" BorderThickness="0 2 0 0"
+						    Width="280">
+						<Border.BorderBrush>
+							<LinearGradientBrush StartPoint="0%,100%" EndPoint="0%,0%">
+								<GradientStop Offset="0.0" Color="white"/>
+								<GradientStop Offset="0.5" Color="Gray"/>
+								<GradientStop Offset="1.0" Color="white"/>
+							</LinearGradientBrush>
+						</Border.BorderBrush>
+					</Border>
+
+					<!-- Password Label -->
+					<Label Grid.Row="5" FontSize="30" Content="Password" Padding="0,30,0,0" IsVisible="{Binding PasswordIsNotEditing}"/>
+
+				
+					<!-- Password Entry -->
+					<TextBox  Grid.Row="6" BorderBrush="Transparent"  FontSize="20" PasswordChar="*" HorizontalContentAlignment="Center"
+							 Text="{Binding Password}" Margin="0,20,0,0"  ></TextBox>
+
+					<!-- Underline for the Password Entry -->
+					<Border Grid.Row="7"
+							Margin="0,5,0,0"
+						    HorizontalAlignment="Center"
+						    BorderBrush="Gray" BorderThickness="0 2 0 0"
+						    Width="280">
+						<Border.BorderBrush>
+							<LinearGradientBrush StartPoint="0%,100%" EndPoint="0%,0%">
+								<GradientStop Offset="0.0" Color="white"/>
+								<GradientStop Offset="0.5" Color="Gray"/>
+								<GradientStop Offset="1.0" Color="white"/>
+							</LinearGradientBrush>
+						</Border.BorderBrush>
+					</Border>
+				
+			
+					
+			
+				</Grid>
+			</Border>
+
+
+
 
 		</controls:AnimatedPopup>
 
@@ -77,15 +164,16 @@
 			Grid.RowSpan="2"
 			Name="GlucoseEntryPopup"
 			Open="{Binding GlucoseEntryPopupIsOpen, Mode=TwoWay}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
 			AnimationTime="0:0:0.1">
 
 			<!-- The Content in the User Entry Popup -->
 			<Label Content="Label" Height="300" Width="600" Background="Pink"></Label>
 
 		</controls:AnimatedPopup>
-		
+
+		<!--#endregion Main Grid Popups-->
 
 		<!-- Title bar -->
 		<Grid Grid.Row="0" ColumnDefinitions="*, Auto,Auto" Background="Beige">
@@ -107,7 +195,7 @@
 							  Content="User:  John Doe"
 							  VerticalAlignment="Center" />
 			</StackPanel>
-			
+
 			<!-- Third Column Contents... this is only for demo purposes.. TODO:  Remove this -->
 			<Label Grid.Column="2" Foreground="Red" Content="Label in third column" VerticalAlignment="Center"/>
 
@@ -120,6 +208,8 @@
 
 			<!-- Grid Styles:  Footer Bar -->
 			<Grid.Styles>
+
+				<!-- Button Styles: Footer Bar -->
 				<Style Selector="Button">
 					<Setter Property="FontSize" Value="20"></Setter>
 					<Setter Property="Foreground" Value="White"></Setter>
@@ -127,14 +217,12 @@
 					<Setter Property="Margin" Value="5"></Setter>
 					<Setter Property="Background" Value="{DynamicResource LightBlueBrush}"></Setter>
 					<Setter Property="Width" Value="120"></Setter>
-					
 					<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
 				</Style>
 			</Grid.Styles>
 
-
 			<!-- Exersize button -->
-			<Button Grid.Column="0" Content="Exersize" ></Button>
+			<Button Grid.Column="0" Content="Exersize" />
 
 			<!-- Food button -->
 			<Button Grid.Column="1"
@@ -143,16 +231,14 @@
 			        Content="Food" />
 
 			<!-- Insulin button -->
-			<Button Grid.Column="3" Content="Insulin" ></Button>
+			<Button Grid.Column="3" Content="Insulin" />
 
 			<!-- Glucose button -->
-			<Button Grid.Column="4" 
+			<Button Grid.Column="4"
 					Name="GlucoseEntryButton"
 					Command="{Binding #GlucoseEntryPopup.BeginOpen}"
-					Content="Glucose"></Button>
-
+					Content="Glucose" />
 
 		</Grid>
 	</Grid>
-
 </UserControl>
