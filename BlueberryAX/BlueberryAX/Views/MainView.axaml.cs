@@ -75,17 +75,17 @@ namespace BlueberryAX.Views
 
             Dispatcher.UIThread.InvokeAsync(() =>
             {
-                // Get relative position of button, in relation to main grid
-                var position = mUserEntryButton.TranslatePoint(new Point(), mMainGrid) ??
-                               throw new Exception("Cannot get TranslatePoint from Configuration Button");
+            // Get relative position of button, in relation to main grid
+            var position = mUserEntryButton.TranslatePoint(new Point(), mMainGrid) ??
+                           throw new Exception("Cannot get TranslatePoint from Configuration Button");
 
 
                 // Set margin of popup so it appears bottom left of button
                 mUserEntryPopup.Margin = new Thickness(
-                    position.X,
-                    0,
-                    0,
-                    mMainGrid.Bounds.Height - position.Y - mUserEntryButton.Bounds.Height);
+                0,
+                position.Y,
+                mMainGrid.Bounds.Width - position.X - mUserEntryButton.Bounds.Width ,
+                0);
             });
         }
 
