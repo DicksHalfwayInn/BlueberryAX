@@ -84,7 +84,7 @@
 
 						</Style>
 
-						<Style Selector="Button.logIn">
+						<Style Selector="Button.login">
 							<Setter Property="FontSize" Value="30"></Setter>
 							<!--<Setter Property="Background" Value=""></Setter>-->
 						</Style>
@@ -94,7 +94,11 @@
 					</Grid.Styles>
 
 					<!-- Log In Label -->
-					<Label Grid.Row="0" Content="Log In" FontSize="25"></Label>
+					<StackPanel Grid.Row="0" Orientation="Vertical">
+						<Label Content="User" FontSize="25"></Label>
+						<Label Content="Log In" FontSize="25"></Label>
+
+					</StackPanel>
 
 					<!-- The Gradient line Kinston used in his login but trying to get it to work horizontally -->
 					<Border Grid.Row="1"
@@ -135,7 +139,7 @@
 					<!-- Password Label -->
 					<Label Grid.Row="5" FontSize="30" Content="Password" Padding="0,30,0,0" />
 
-				
+
 					<!-- Password Entry -->
 					<TextBox  Grid.Row="6" BorderBrush="Transparent"  FontSize="20" PasswordChar="*" HorizontalContentAlignment="Center"
 							 Text="{Binding Password}" Margin="0,20,0,0" ></TextBox>
@@ -156,12 +160,12 @@
 					</Border>
 
 					<StackPanel Grid.Row="8" Orientation="Horizontal">
-						<Button Classes="LogIn" Content="Update" Margin="0,0,50,0"></Button>
-						<Button Classes="LogIn" Content="Quit"></Button>
+						<Button Classes="login" Content="Log In" Background="LightGreen" Margin="0,0,50,0"></Button>
+						<Button Classes="login" Content="Cancel" Background="Red"></Button>
 
 					</StackPanel>
-					
-			
+
+
 				</Grid>
 			</Border>
 
