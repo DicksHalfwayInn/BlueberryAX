@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:valueConverters="clr-namespace:BlueberryAX.ValueConverters"
 			 xmlns:controls="clr-namespace:BlueberryAX"
-             mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
+			 mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
              x:Class="BlueberryAX.Views.MainView"
 	         Foreground="White"
              Background="#171C2C">
-	
+
 
 
 	<!-- Set up the resources for the UserControl to be able to find value converter -->
@@ -41,50 +41,78 @@
 	<!-- Main Grid -->
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua" >
 
-    <!-- Title bar -->
-    <Grid Grid.Row="0" 
-          ColumnDefinitions="*, Auto"
-          Background="Beige" >
-      <Label Grid.Column="0" Grid.ColumnSpan="2" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
-
-      <!-- User button -->
-      <Button Grid.Column="1"
-					Name="UserEntryButton"
-					Command="{Binding #UserEntryPopup.BeginOpen}"
-					Content="User:  John Doe" ></Button>
-
-    </Grid>
-
 		<!-- Food Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="1"
 			Grid.RowSpan="2"
 			HorizontalAlignment="Left"
-      VerticalAlignment="Bottom"
+            VerticalAlignment="Bottom"
 			Name="FoodEntryPopup"
-      
-			Open="{Binding FoodEntryPopupIsOpen, Mode=TwoWay}"
-			
-			AnimationTime="0:0:0.1"
-			>
+        	Open="{Binding FoodEntryPopupIsOpen, Mode=TwoWay}"
+			AnimationTime="0:0:0.1">
+
+			<!-- The content in the Food Entry Popup -->
 			<Label Content="Label" Height="400" Width="400" Background="Red"></Label>
+
 		</controls:AnimatedPopup>
 
 		<!-- User Entry Popup -->
 		<controls:AnimatedPopup
 			Grid.Row="0"
 			Grid.RowSpan="2"
-			
 			Name="UserEntryPopup"
 			Open="{Binding UserEntryPopupIsOpen, Mode=TwoWay}"
-      HorizontalAlignment="Right"
-      VerticalAlignment="Top"
-			
-			AnimationTime="0:0:0.1"
-			>
-			<Label Content="Label" Height="300" Width="300" Background="Green"></Label>
-			
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+			AnimationTime="0:0:0.1">
+
+			<!-- The Content in the User Entry Popup -->
+			<Label Content="Label" Height="300" Width="600" Background="Green"></Label>
+
 		</controls:AnimatedPopup>
+
+		<!-- Glucose Entry Popup -->
+		<controls:AnimatedPopup
+			Grid.Row="0"
+			Grid.RowSpan="2"
+			Name="GlucoseEntryPopup"
+			Open="{Binding GlucoseEntryPopupIsOpen, Mode=TwoWay}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+			AnimationTime="0:0:0.1">
+
+			<!-- The Content in the User Entry Popup -->
+			<Label Content="Label" Height="300" Width="600" Background="Pink"></Label>
+
+		</controls:AnimatedPopup>
+		
+
+		<!-- Title bar -->
+		<Grid Grid.Row="0" ColumnDefinitions="*, Auto,Auto" Background="Beige">
+
+			<!-- The Title in the middle of all the columns... 
+			        this will probably be for the time in digital and am/pm TODO:  Change this-->
+			<Label Grid.Column="0" Grid.ColumnSpan="3" Content="Title Bar" FontSize="20" HorizontalAlignment="Center" Padding="15"></Label>
+
+			<!-- Displays the users image and name -->
+			<StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+
+				<!-- The image associated with the user -->
+				<!--<Image Source="Assets/avalonia-logo.ico" />-->
+				<Button Content="IMAGE" VerticalAlignment="Center"/>
+
+				<!-- User button -->
+				<Button 	  Name="UserEntryButton"
+							  Command="{Binding #UserEntryPopup.BeginOpen}"
+							  Content="User:  John Doe"
+							  VerticalAlignment="Center" />
+			</StackPanel>
+			
+			<!-- Third Column Contents... this is only for demo purposes.. TODO:  Remove this -->
+			<Label Grid.Column="2" Foreground="Red" Content="Label in third column" VerticalAlignment="Center"/>
+
+		</Grid>
+
 
 		<!-- Footer Bar -->
 		<Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, *, Auto, Auto"
@@ -99,7 +127,7 @@
 					<Setter Property="Margin" Value="5"></Setter>
 					<Setter Property="Background" Value="{DynamicResource LightBlueBrush}"></Setter>
 					<Setter Property="Width" Value="120"></Setter>
-					<Setter Property="Height" Value="100"></Setter>
+					
 					<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
 				</Style>
 			</Grid.Styles>
@@ -112,13 +140,16 @@
 			<Button Grid.Column="1"
 					Name="FoodEntryButton"
 					Command="{Binding #FoodEntryPopup.BeginOpen}"
-			    Content="Food" />
+			        Content="Food" />
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" ></Button>
 
 			<!-- Glucose button -->
-			<Button Grid.Column="4" Content="Glucose"></Button>
+			<Button Grid.Column="4" 
+					Name="GlucoseEntryButton"
+					Command="{Binding #GlucoseEntryPopup.BeginOpen}"
+					Content="Glucose"></Button>
 
 
 		</Grid>
