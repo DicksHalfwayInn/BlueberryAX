@@ -69,7 +69,7 @@
 			<!-- The Content in the User Entry Popup -->
 			<Border Background="white" BorderBrush="DarkGray" BorderThickness="2"  CornerRadius="10">
 
-				<Grid RowDefinitions="Auto, Auto, Auto,Auto, Auto, Auto,Auto,Auto, *" Width="300" Height="450" Margin="20,50,20,35" >
+				<Grid RowDefinitions="Auto, Auto, Auto,Auto, Auto, Auto,Auto,Auto, *, Auto" Width="300" Height="450" Margin="20,50,20,35" >
 
 					<!-- Grid Styles:  For the User Entry Popup -->
 					<Grid.Styles>
@@ -84,8 +84,10 @@
 						</Style>
 
 						<!-- Special: Button properties just for Login Dropin Popdown -->
-						<Style Selector="Button.login">
+						<Style Selector="Button.loginCancel">
 							<Setter Property="FontSize" Value="30"></Setter>
+							<Setter Property="Width" Value="125"></Setter>
+							<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
 							<!--<Setter Property="Background" Value=""></Setter>-->
 						</Style>
 						<Style Selector="StackPanel">
@@ -93,11 +95,9 @@
 						</Style>
 					</Grid.Styles>
 
-					<!-- Log In Label -->
+					<!-- Login Popup Header -->
 					<StackPanel Grid.Row="0" Orientation="Vertical">
-						<Label Content="User" FontSize="25"></Label>
-						<Label Content="Log In" FontSize="25"></Label>
-
+						<Label Content="User Log In" FontSize="25"></Label>
 					</StackPanel>
 
 					<!-- The Gradient line Kinston used in his login but trying to get it to work horizontally -->
@@ -159,14 +159,24 @@
 						</Border.BorderBrush>
 					</Border>
 
-					<StackPanel Grid.Row="8" Orientation="Horizontal">
-						<Button Classes="login" 
+					<!-- LogIn or Cancel buttons -->
+					<StackPanel Grid.Row="8" Orientation="Horizontal" 
+								VerticalAlignment="Center">
+						<Button Classes="loginCancel" 
 								Content="Log In" 
 						        Background="LightGreen" 
-						        Command="{Binding LoginCommand}" Margin="0,0,50,0"></Button>
-						<Button Classes="login" Content="Cancel" Background="Red"></Button>
-
+						        Command="{Binding LoginCommand}" 
+						        Margin="0,0,20,0"></Button>
+						<Button Classes="loginCancel" 
+								Content="Cancel"
+								Command="{Binding CancelLoginCommand}"
+								Background="Red"></Button>
 					</StackPanel>
+					
+					
+					<Label Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"
+						   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginIsValid}" />
+					
 
 
 				</Grid>
@@ -211,12 +221,11 @@
 				<!-- User button -->
 				<Button 	  Name="UserEntryButton"
 							  Command="{Binding #UserEntryPopup.BeginOpen}"
-							  Content="User:  John Doe"
-							  VerticalAlignment="Center" />
+							  Content="{Binding LoggedInUser.ShortName}"
+							  VerticalAlignment="Center" 
+		                   	Margin="0,0,20,0"/>
 			</StackPanel>
 
-			<!-- Third Column Contents... this is only for demo purposes.. TODO:  Remove this -->
-			<Label Grid.Column="2" Foreground="Red" Content="Label in third column" VerticalAlignment="Center"/>
 
 		</Grid>
 

@@ -55,6 +55,9 @@ namespace BlueberryAX.ViewModels
         /// </summary>
         [ObservableProperty] private UserModel loggedInUser = mDefaultLoggedInUser;
 
+        [ObservableProperty] private bool loginIsValid = false;
+
+
         #region Email FullProperty
 
         /// <summary>
@@ -67,6 +70,8 @@ namespace BlueberryAX.ViewModels
             get => emailAddress;
             set
             {
+
+                loginIsValid = true;
                 // Check to see if the default email address has been changed for the first time
                 //      If it has been changed then find the newly inserted keypress and delete all the
                 //      default characters from the property
@@ -91,6 +96,8 @@ namespace BlueberryAX.ViewModels
 
                 // Set the emailaddress property to the changed value
                 SetProperty(ref emailAddress, value);
+
+                
             }
         }
 
@@ -138,15 +145,42 @@ namespace BlueberryAX.ViewModels
                     {
                         LoggedInUserIsValid(validUser);
 
-                        LoginPopupIsOpen = false;
+                        return;
                     }
                 }
             }
+
+            LoginIsValid = true;
+        }
+
+        [RelayCommand]
+        private void CancelLogin()
+        {
+            ResetLoginEmailAndPasswordToDefault();
+
+            
+        }
+
+        private void ResetLoginEmailAndPasswordToDefault()
+        {
+            EmailAddress = mDefaultEmailAddress;
+
+            Password = "";
+
+            LoginPopupIsOpen = false;
+
+            LoginIsValid = false;
+
         }
 
         private void LoggedInUserIsValid(UserModel user)
         {
             LoggedInUser = user;
+
+            ResetLoginEmailAndPasswordToDefault();
+
+        
+            
         }
 
         //[RelayCommand]
