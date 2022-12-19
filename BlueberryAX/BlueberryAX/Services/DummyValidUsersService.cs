@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlueberryAX.Services
 {
-    public class DummyValidUsersService : IUserService
+    public class DummyValidUsersService : IValidUsersService
     {
         public Task<List<UserModel>> GetValidUsersAsync() =>
             Task.FromResult(new List<UserModel>(new[]

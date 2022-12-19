@@ -17,33 +17,57 @@ namespace BlueberryAX.ViewModels
     {
         #region Private Members
 
-        private readonly IUserService mUserService;
+        /// <summary>
+        ///      The Service used to load the dummy list of valid users
+        /// </summary>
+        private readonly IValidUsersService mValidUsersService;
 
+        /// <summary>
+        /// The Default email address used in the Login popup
+        /// </summary>
+        private static readonly string mDefaultEmailAddress = "Email@Address.com";
 
+        private static readonly UserModel mDefaultLoggedInUser = new UserModel("DefaultUser", "DefaultShortName", "DefaultEmail", "DefaultPassword");
 
-        #endregion
+        #endregion EndRegion-Private Members
+
 
         #region Public Properties
 
-        [ObservableProperty] private string boldTitle = "AVALONIA";
+        [ObservableProperty] private bool userEntryPopupIsVisible = false;
 
-        [ObservableProperty] private string regularTitle = "LOUDNESS METER";
-
+        /// <summary>
+        ///      Indicates if the FoodEntryPopup is open... TODO:  Doesn't seem to work
+        /// </summary>
         [ObservableProperty] private bool foodEntryPopupIsOpen = false;
 
+        /// <summary>
+        ///      The list of valid users that come from the valid users service on 
+        ///      LoadSettingsAsync() which is a Community Toolkit tool that runs after the view is loaded
+        /// </summary>   
         [ObservableProperty] private ObservableCollection<UserModel> validUsers = default!;
 
-        private string emailAddress = "Email@Address.com";
+        /// <summary>
+        ///      The Logged in User
+        /// </summary>
+        [ObservableProperty] private UserModel loggedInUser = mDefaultLoggedInUser;
+
+        #region Email FullProperty
 
         /// <summary>
         /// The Email Address which changes to just the key pressed when it changes for the first time
         /// </summary>
+        private string emailAddress = mDefaultEmailAddress;
+
         public string EmailAddress
         {
             get => emailAddress;
             set
             {
-                if (value != emailAddress && emailAddress == "Email@Address.com")
+                // Check to see if the default email address has been changed for the first time
+                //      If it has been changed then find the newly inserted keypress and delete all the
+                //      default characters from the property
+                if (value != emailAddress && emailAddress == mDefaultEmailAddress)
                 {
                     var i = 0;
                     foreach (var c in value)
@@ -56,46 +80,41 @@ namespace BlueberryAX.ViewModels
                         }
                         i++;
                     }
+                }
 
-                }
-                if (value.Length == 0)
-                {
-                    value = "Email@Address.com";
-                }
+                // If the user has deleted all his entered characters in the Email textbox
+                //      then change the text back to the default
+                if (value.Length == 0) value = mDefaultEmailAddress;
+
+                // Set the emailaddress property to the changed value
                 SetProperty(ref emailAddress, value);
             }
         }
 
-        private string password;
+        #endregion EndRegion-Email FullProperty
 
-        
+        #region Password FullProperty
 
         /// <summary>
         /// The Password which changes to just the key pressed when it changes for the first time
         /// </summary>
+        private string password;
+
         public string Password
         {
             get => password;
             set
             {
+                // update the password property with the changed value
                 SetProperty(ref password, value);
 
             }
-
         }
 
+        #endregion Password FullProperty
 
+        #endregion Public Properties
 
-        //[ObservableProperty]
-        //private ObservableGroupedCollection<string, ChannelConfigurationItem> _channelConfigurations = default!;
-
-        //[ObservableProperty]
-        //[NotifyPropertyChangedFor(nameof(ChannelConfigurationButtonText))]
-        //private ChannelConfigurationItem? _selectedChannelConfiguration;
-
-        //public string ChannelConfigurationButtonText => SelectedChannelConfiguration?.ShortText ?? "Select Channel";
-
-        #endregion
 
         #region Public Commands
 
@@ -108,7 +127,23 @@ namespace BlueberryAX.ViewModels
         [RelayCommand]
         private void Login()
         {
+            foreach (var validUser in validUsers)
+            {
+                if (emailAddress == validUser.Email && emailAddress != mDefaultEmailAddress)
+                {
+                    if (validUser.Password == password)
+                    {
+                        LoggedInUserIsValid(validUser);
 
+                        UserEntryPopupIsVisible = false;
+                    }
+                }
+            }
+        }
+
+        private void LoggedInUserIsValid(UserModel user)
+        {
+            LoggedInUser = user;
         }
 
         //[RelayCommand]
@@ -125,12 +160,12 @@ namespace BlueberryAX.ViewModels
         private async Task LoadSettingsAsync()
         {
 
-            ValidUsers = new ObservableCollection<UserModel>(await mUserService.GetValidUsersAsync());
+            ValidUsers = new ObservableCollection<UserModel>(await mValidUsersService.GetValidUsersAsync());
 
-    
+
         }
 
-        #endregion
+        #endregion EndRegion-Public Commands
 
         #region Constructors
 
@@ -138,9 +173,9 @@ namespace BlueberryAX.ViewModels
         /// Default Constructor
         /// </summary>
         /// <param name="userService">The valid users service</param>
-        public MainViewModel(IUserService userService )
+        public MainViewModel(IValidUsersService userService)
         {
-            mUserService = userService;
+            mValidUsersService = userService;
         }
 
         /// <summary>
@@ -148,7 +183,7 @@ namespace BlueberryAX.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            mUserService = new DummyValidUsersService();
+            mValidUsersService = new DummyValidUsersService();
         }
 
         #endregion
