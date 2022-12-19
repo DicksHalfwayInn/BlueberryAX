@@ -174,8 +174,9 @@
 					</StackPanel>
 
 					<!-- The Login is not valid display -->
+					<Label Grid.Row="9" Content=" " />
 					<Label Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"
-					   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginIsValid}" />
+					   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginFailed}" ZIndex="1" />
 				</Grid>
 			</Border>
 

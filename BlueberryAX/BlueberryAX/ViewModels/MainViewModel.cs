@@ -59,7 +59,9 @@ namespace BlueberryAX.ViewModels
         [ObservableProperty] private UserModel loggedInUser = mDefaultLoggedInUser;
 
         // TODO: and this...
-        [ObservableProperty] private bool loginIsValid = false;
+        [ObservableProperty] private bool loginFailed = false;
+
+        
 
 
         #region Email FullProperty
@@ -75,7 +77,7 @@ namespace BlueberryAX.ViewModels
             set
             {
                 // TODO: CHange this
-                loginIsValid = true;
+                LoginFailed = false;
                 // Check to see if the default email address has been changed for the first time
                 //      If it has been changed then find the newly inserted keypress and delete all the
                 //      default characters from the property
@@ -119,6 +121,7 @@ namespace BlueberryAX.ViewModels
             get => password;
             set
             {
+                LoginFailed = false;
                 // update the password property with the changed value
                 SetProperty(ref password, value);
 
@@ -165,7 +168,7 @@ namespace BlueberryAX.ViewModels
             }
             // Reset the Login is Valid property to true, even if it is reset to the default settings
             // This only gets set to false if a login button is pressed with invalid credentials
-            LoginIsValid = true;
+            LoginFailed = true;
         }
 
         /// <summary>
@@ -194,15 +197,17 @@ namespace BlueberryAX.ViewModels
         /// </summary>
         private void ResetLoginEmailAndPasswordToDefault()
         {
-            EmailAddress = mDefaultEmailAddress;
+            emailAddress = "Email@Address.com";
 
             Password = "";
 
             LoginPopupIsOpen = false;
 
             // TODO: and this...
-            LoginIsValid = false;
+            LoginFailed = false;
         }
+
+        
 
         /// <summary>
         /// The CommunityToolkitMethod that gets ran after the view is loaded and running
