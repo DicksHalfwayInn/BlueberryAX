@@ -27,6 +27,9 @@ namespace BlueberryAX.ViewModels
         /// </summary>
         private static readonly string mDefaultEmailAddress = "Email@Address.com";
 
+        /// <summary>
+        ///      The default email and null password for the Login popup on opening
+        /// </summary>
         private static readonly UserModel mDefaultLoggedInUser = new UserModel("DefaultUser", "DefaultShortName", "DefaultEmail", "DefaultPassword");
 
         #endregion EndRegion-Private Members
@@ -34,7 +37,7 @@ namespace BlueberryAX.ViewModels
 
         #region Public Properties
 
-        [ObservableProperty] private bool userEntryPopupIsVisible = false;
+        [ObservableProperty] private bool loginPopupIsOpen = false;
 
         /// <summary>
         ///      Indicates if the FoodEntryPopup is open... TODO:  Doesn't seem to work
@@ -135,7 +138,7 @@ namespace BlueberryAX.ViewModels
                     {
                         LoggedInUserIsValid(validUser);
 
-                        UserEntryPopupIsVisible = false;
+                        LoginPopupIsOpen = false;
                     }
                 }
             }

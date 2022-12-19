@@ -61,7 +61,7 @@
 			Grid.Row="0"
 			Grid.RowSpan="3"
 			Name="UserEntryPopup"
-			Open="{Binding UserEntryPopupIsVisible, Mode=TwoWay}"
+			Open="{Binding LoginPopupIsOpen, Mode=TwoWay}"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
 			AnimationTime="0:0:0.1">
