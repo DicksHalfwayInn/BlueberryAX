@@ -160,30 +160,24 @@
 					</Border>
 
 					<!-- LogIn or Cancel buttons -->
-					<StackPanel Grid.Row="8" Orientation="Horizontal" 
+					<StackPanel Grid.Row="8" Orientation="Horizontal"
 								VerticalAlignment="Center">
-						<Button Classes="loginCancel" 
-								Content="Log In" 
-						        Background="LightGreen" 
-						        Command="{Binding LoginCommand}" 
+						<Button Classes="loginCancel"
+								Content="Log In"
+						        Background="LightGreen"
+						        Command="{Binding LoginCommand}"
 						        Margin="0,0,20,0"></Button>
-						<Button Classes="loginCancel" 
+						<Button Classes="loginCancel"
 								Content="Cancel"
 								Command="{Binding CancelLoginCommand}"
 								Background="Red"></Button>
 					</StackPanel>
-					
-					
+
+					<!-- The Login is not valid display -->
 					<Label Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"
-						   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginIsValid}" />
-					
-
-
+					   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginIsValid}" />
 				</Grid>
 			</Border>
-
-
-
 
 		</controls:AnimatedPopup>
 
@@ -222,13 +216,10 @@
 				<Button 	  Name="UserEntryButton"
 							  Command="{Binding #UserEntryPopup.BeginOpen}"
 							  Content="{Binding LoggedInUser.ShortName}"
-							  VerticalAlignment="Center" 
-		                   	Margin="0,0,20,0"/>
+							  VerticalAlignment="Center"
+		                      Margin="0,0,20,0" />
 			</StackPanel>
-
-
 		</Grid>
-
 
 		<!-- Footer Bar -->
 		<Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, *, Auto, Auto"
@@ -256,10 +247,7 @@
 			<Button Grid.Column="1"
 					Name="FoodEntryButton"
 					Command="{Binding #FoodEntryPopup.BeginOpen}"
-					
-			        Content="Food">
-
-			</Button>
+					Content="Food" />
 
 			<!-- Insulin button -->
 			<Button Grid.Column="3" Content="Insulin" />
@@ -269,7 +257,6 @@
 					Name="GlucoseEntryButton"
 					Command="{Binding #GlucoseEntryPopup.BeginOpen}"
 					Content="Glucose" />
-
 		</Grid>
 	</Grid>
 </UserControl>

@@ -37,6 +37,9 @@ namespace BlueberryAX.ViewModels
 
         #region Public Properties
 
+        /// <summary>
+        ///      Indicates if the Login Popup is open
+        /// </summary>
         [ObservableProperty] private bool loginPopupIsOpen = false;
 
         /// <summary>
@@ -55,6 +58,7 @@ namespace BlueberryAX.ViewModels
         /// </summary>
         [ObservableProperty] private UserModel loggedInUser = mDefaultLoggedInUser;
 
+        // TODO: and this...
         [ObservableProperty] private bool loginIsValid = false;
 
 
@@ -70,7 +74,7 @@ namespace BlueberryAX.ViewModels
             get => emailAddress;
             set
             {
-
+                // TODO: CHange this
                 loginIsValid = true;
                 // Check to see if the default email address has been changed for the first time
                 //      If it has been changed then find the newly inserted keypress and delete all the
@@ -97,7 +101,7 @@ namespace BlueberryAX.ViewModels
                 // Set the emailaddress property to the changed value
                 SetProperty(ref emailAddress, value);
 
-                
+
             }
         }
 
@@ -121,46 +125,73 @@ namespace BlueberryAX.ViewModels
             }
         }
 
-        #endregion Password FullProperty
+        #endregion EndRegion-Password-FullProperty
 
-        #endregion Public Properties
+        #endregion EndRegion-Public Properties
 
 
         #region Public Commands
 
+        /// <summary>
+        /// The Food Entry Button Pressed method
+        /// </summary>
         [RelayCommand]
         private void FoodEntryButtonPressed()
         {
+            //  TODO:  This never gets hit but it needs be changed to Login type.
             FoodEntryPopupIsOpen ^= true;
         }
 
+        /// <summary>
+        ///      Runs whenever the LogIn button is pressed on the Login Popup in the view
+        /// </summary>
         [RelayCommand]
         private void Login()
         {
+            // Find out if we have a valid user from the list of valid users
             foreach (var validUser in validUsers)
             {
+                // If we have a valid user... make sure their password is correct
                 if (emailAddress == validUser.Email && emailAddress != mDefaultEmailAddress)
                 {
                     if (validUser.Password == password)
                     {
+                        // Call method to handle a valid user and pass in the user
                         LoggedInUserIsValid(validUser);
-
+                        // Exit the Login method
                         return;
                     }
                 }
             }
-
+            // Reset the Login is Valid property to true, even if it is reset to the default settings
+            // This only gets set to false if a login button is pressed with invalid credentials
             LoginIsValid = true;
         }
 
+        /// <summary>
+        ///      Called when the Cancel button on the Login popup is active
+        /// </summary>
         [RelayCommand]
         private void CancelLogin()
         {
             ResetLoginEmailAndPasswordToDefault();
-
-            
         }
 
+        /// <summary>
+        ///      Called when the logged in user has been validated with one in the valid list
+        /// </summary>
+        /// <param name="user">The user that the email and password validated</param>
+        private void LoggedInUserIsValid(UserModel user)
+        {
+            LoggedInUser = user;
+
+            ResetLoginEmailAndPasswordToDefault();
+        }
+
+        /// <summary>
+        /// Resets the Login popup's email and password to the default
+        ///        And makes the Login popup disappear
+        /// </summary>
         private void ResetLoginEmailAndPasswordToDefault()
         {
             EmailAddress = mDefaultEmailAddress;
@@ -169,40 +200,22 @@ namespace BlueberryAX.ViewModels
 
             LoginPopupIsOpen = false;
 
+            // TODO: and this...
             LoginIsValid = false;
-
         }
 
-        private void LoggedInUserIsValid(UserModel user)
-        {
-            LoggedInUser = user;
-
-            ResetLoginEmailAndPasswordToDefault();
-
-        
-            
-        }
-
-        //[RelayCommand]
-        //private void ChannelConfigurationItemPressed(ChannelConfigurationItem item)
-        //{
-        //    // Update the selected item
-        //    SelectedChannelConfiguration = item;
-
-        //    // Close the menu
-        //    ChannelConfigurationListIsOpen = false;
-        //}
-
+        /// <summary>
+        /// The CommunityToolkitMethod that gets ran after the view is loaded and running
+        /// </summary>
+        /// <returns>Returns a null task ???? TODO: what should this comment be???</returns>
         [RelayCommand]
         private async Task LoadSettingsAsync()
         {
-
-            ValidUsers = new ObservableCollection<UserModel>(await mValidUsersService.GetValidUsersAsync());
-
-
+                        ValidUsers = new ObservableCollection<UserModel>(await mValidUsersService.GetValidUsersAsync());
         }
 
         #endregion EndRegion-Public Commands
+
 
         #region Constructors
 
@@ -223,6 +236,6 @@ namespace BlueberryAX.ViewModels
             mValidUsersService = new DummyValidUsersService();
         }
 
-        #endregion
+        #endregion EndRegion-Constructors
     }
 }
