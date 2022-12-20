@@ -3,7 +3,7 @@ using Avalonia.Markup.Xaml;
 using System;
 using System.Globalization;
 
-namespace AvaloniaAX.ValueConverters
+namespace BlueberryAX.ValueConverters
 {
     /// <summary>
     /// A base value converter that allows direct XAML usage

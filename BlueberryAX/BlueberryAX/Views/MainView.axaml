@@ -4,17 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:valueConverters="clr-namespace:BlueberryAX.ValueConverters"
 			 xmlns:controls="clr-namespace:BlueberryAX"
+			 xmlns:views="clr-namespace:BlueberryAX.Views"
 			 mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
              x:Class="BlueberryAX.Views.MainView"
 	         Foreground="White"
              Background="#171C2C">
 
-	<!-- Set up the resources for the UserControl to be able to find value converter -->
+	<!-- UserControl Resources: Value Converters -->
 	<UserControl.Resources>
 		<valueConverters:CheckedToRotationConverter x:Key="CheckedToRotationConverter"></valueConverters:CheckedToRotationConverter>
+		<valueConverters:NullTextboxToSliderConverter x:Key="NullTextboxToSliderConverter"></valueConverters:NullTextboxToSliderConverter>
+
 	</UserControl.Resources>
 
-	<!-- Set up the Styles for UserControl -->
+	<!-- UserControl Styles: Button and button pointerover -->
 	<UserControl.Styles>
 		<!-- Set up the style for Button.small -->
 		<Style Selector="Button.LogIn">
@@ -40,6 +43,8 @@
 	<Grid Name="MainGrid" RowDefinitions="Auto, *, Auto" Background="Aqua" >
 
 		<!--#region Main Grid Popups -->
+
+
 
 		<!-- Food Entry Popup -->
 		<controls:AnimatedPopup
@@ -143,6 +148,13 @@
 					<!-- Password Entry -->
 					<TextBox  Grid.Row="6" BorderBrush="Transparent"  FontSize="20" PasswordChar="*" HorizontalContentAlignment="Center"
 							 Text="{Binding Password}" Margin="0,20,0,0" ></TextBox>
+					<!--<StackPanel Grid.Row="6">
+						<TextBox x:Name="Textbox" Text="{Binding ElementName=Slider, 
+								 Path=Value, Converter={StaticResource NullTextboxToSliderConverter} }" ></TextBox>
+						<Slider TickFrequency="1" IsSnapToTickEnabled="True" x:Name="Slider"></Slider>
+					</StackPanel>-->
+					<!--<TextBox  Grid.Row="6" BorderBrush="Transparent"  FontSize="20" PasswordChar="*" HorizontalContentAlignment="Center"
+							 Text="{Binding Password}" Margin="0,20,0,0" ></TextBox>-->
 
 					<!-- Underline for the Password Entry -->
 					<Border Grid.Row="7"
@@ -159,14 +171,16 @@
 						</Border.BorderBrush>
 					</Border>
 
-					<!-- LogIn or Cancel buttons -->
+					<!-- LogIn and Cancel buttons -->
 					<StackPanel Grid.Row="8" Orientation="Horizontal"
 								VerticalAlignment="Center">
+						<!-- Login button -->
 						<Button Classes="loginCancel"
 								Content="Log In"
 						        Background="LightGreen"
 						        Command="{Binding LoginCommand}"
 						        Margin="0,0,20,0"></Button>
+						<!-- Cancel button -->
 						<Button Classes="loginCancel"
 								Content="Cancel"
 								Command="{Binding CancelLoginCommand}"
@@ -179,7 +193,6 @@
 					   Content="The Login Failed" Foreground="Green" IsVisible="{Binding LoginFailed}" ZIndex="1" />
 				</Grid>
 			</Border>
-
 		</controls:AnimatedPopup>
 
 		<!-- Glucose Entry Popup -->
@@ -221,6 +234,25 @@
 		                      Margin="0,0,20,0" />
 			</StackPanel>
 		</Grid>
+
+		<!-- Infographic Templated Control -->
+		<!--<controls:Infographic Grid.Row="1">
+			<Grid Grid.Row="1"
+				  HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Border HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Background="Yellow"
+						Padding="20,20,20,20"
+						>
+				</Border>
+
+			</Grid>
+		</controls:Infographic>-->
+
+		<!-- Infographic Templated Control -->
+		<views:InfographicUIControl Grid.Row="1">
+
+		</views:InfographicUIControl>
 
 		<!-- Footer Bar -->
 		<Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, *, Auto, Auto"

@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:controls="using:BlueberryAX.Controls"
 			 xmlns:viewModels="using:BlueberryAX"
-			 xmlns:converters="using:AvaloniaAX.ValueConverters"
+			 xmlns:converters="using:BlueberryAX.ValueConverters"
              x:Class="BlueberryAX.Views.InfographicUIControl">
 
 	<!--<Grid Background="Red">
@@ -13,9 +13,9 @@
 
 	</Grid>-->
 
-	 <!--Main Grid for the Page--> 
+	<!--Main Grid for the Page-->
 	<Grid Background="Gainsboro">
-		 <!--Column Definitions-->
+		<!--Column Definitions-->
 		<Grid.RowDefinitions>
 			<!-- Row definitions for the date picker 
             and the AM/PM button-->
@@ -123,6 +123,41 @@
 			</Button>
 		</Grid>
 
+		<!-- The Infographic Main Grid -->
+		<Grid Grid.Row="2">
+
+			<Grid>
+				<!--MinWidth="{Binding ContainerWidth}"
+				MinHeight="{Binding ContainerHeight}"-->
+
+				<!-- Background Yellow Circle -->
+				<Border
+					Width="{Binding InfographicOD}"
+					Height="{Binding InfographicOD}"
+					Background="Yellow"
+					CornerRadius="{Binding InfographicCornerRadius}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					>
+				</Border>
+
+				<Border
+					Width="{Binding RadarBackgrdOD}"
+				    Height="{Binding RadarBackgrdOD}"
+					Background="Black"
+					CornerRadius="{Binding RadarBackgrdCornerRadius}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					ZIndex="1">
+				</Border>
+			
+				
+			
+			</Grid>
+
+
+		</Grid>
+
 		<!-- Main grid to display all of the graphic segments in the "Background" list
         - I have no idea how this works and I haven't f'd with it... hate the name
         just saying. -->
@@ -130,7 +165,9 @@
             Background="Black"
             Grid.Row="2">
 
-			--><!-- BackGround --><!--
+			-->
+		<!-- BackGround -->
+		<!--
 
 			<Grid
                 MinWidth="{Binding ContainerWidth}"
@@ -207,9 +244,13 @@
 
 
 			</ItemsControl>
-			--><!-- Second Items control on the same graphic... I like it... they must overlap
-            each other... ???? I guess ... except they are on different grid rows.  ??? wtf?--><!--
-			--><!-- Annotations --><!--
+			-->
+		<!-- Second Items control on the same graphic... I like it... they must overlap
+            each other... ???? I guess ... except they are on different grid rows.  ??? wtf?-->
+		<!--
+			-->
+		<!-- Annotations -->
+		<!--
 			<ItemsControl
                 DataContext="{Binding ForeGround}"
                 ItemsSource="{Binding RadialGraphicSegments}">
@@ -258,8 +299,8 @@
 
 
 	</Grid>
-	
-	
-	
-	
+
+
+
+
 </UserControl>

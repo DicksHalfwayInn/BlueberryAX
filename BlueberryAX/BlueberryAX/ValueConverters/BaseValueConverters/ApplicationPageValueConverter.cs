@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvaloniaAX.ValueConverters
+namespace BlueberryAX.ValueConverters
 {
     /// <summary>
     /// Convert the <see cref="ApplicationPage"/> to an actual view/Page

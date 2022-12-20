@@ -3,7 +3,7 @@ using BlueberryAX;
 using System;
 using System.Globalization;
 
-namespace AvaloniaAX.ValueConverters
+namespace BlueberryAX.ValueConverters
 {
     /// <summary>
     /// multiply the input numirical value with the choosen parameter

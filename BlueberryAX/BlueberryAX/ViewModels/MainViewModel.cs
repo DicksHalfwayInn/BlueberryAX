@@ -1,4 +1,5 @@
-﻿using Avalonia.Data;
+﻿using Avalonia;
+using Avalonia.Data;
 using BlueberryAX.DataModels;
 using BlueberryAX.Services;
 using CommunityToolkit.Mvvm.Collections;
@@ -15,6 +16,9 @@ namespace BlueberryAX.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+
+        #region Non-Infographic Properties, Commands and Private Methods
+
         #region Private Members
 
         /// <summary>
@@ -33,7 +37,6 @@ namespace BlueberryAX.ViewModels
         private static readonly UserModel mDefaultLoggedInUser = new UserModel("DefaultUser", "DefaultShortName", "DefaultEmail", "DefaultPassword");
 
         #endregion EndRegion-Private Members
-
 
         #region Public Properties
 
@@ -61,16 +64,12 @@ namespace BlueberryAX.ViewModels
         // TODO: and this...
         [ObservableProperty] private bool loginFailed = false;
 
-        
-
-
         #region Email FullProperty
 
         /// <summary>
         /// The Email Address which changes to just the key pressed when it changes for the first time
         /// </summary>
         private string emailAddress = mDefaultEmailAddress;
-
         public string EmailAddress
         {
             get => emailAddress;
@@ -102,8 +101,6 @@ namespace BlueberryAX.ViewModels
 
                 // Set the emailaddress property to the changed value
                 SetProperty(ref emailAddress, value);
-
-
             }
         }
 
@@ -115,7 +112,6 @@ namespace BlueberryAX.ViewModels
         /// The Password which changes to just the key pressed when it changes for the first time
         /// </summary>
         private string password;
-
         public string Password
         {
             get => password;
@@ -124,14 +120,12 @@ namespace BlueberryAX.ViewModels
                 LoginFailed = false;
                 // update the password property with the changed value
                 SetProperty(ref password, value);
-
             }
         }
 
         #endregion EndRegion-Password-FullProperty
 
         #endregion EndRegion-Public Properties
-
 
         #region Public Commands
 
@@ -180,6 +174,10 @@ namespace BlueberryAX.ViewModels
             ResetLoginEmailAndPasswordToDefault();
         }
 
+        #endregion EndRegion-Public Commands
+
+        #region Private Methods
+
         /// <summary>
         ///      Called when the logged in user has been validated with one in the valid list
         /// </summary>
@@ -207,7 +205,46 @@ namespace BlueberryAX.ViewModels
             LoginFailed = false;
         }
 
-        
+        #endregion Private Methods
+
+        #endregion EndRegion - Non-Infographic Properties, Commands and Private Methods
+
+        #region Infographic Properties, Commands and Private Methods
+
+        private static double mInfographicOR = 169;
+
+        private static double mRadarBackgrdOR = 120;
+
+        [ObservableProperty]private double radarOD = mRadarBackgrdOR * 2;
+
+        [ObservableProperty]private double infographicOD = mInfographicOR * 2;
+
+        [ObservableProperty]private CornerRadius infographicCornerRadius = new CornerRadius(mInfographicOR);
+
+        [ObservableProperty]private double radarBackgrdOD = (mRadarBackgrdOR + 1) * 2;
+
+        [ObservableProperty] private CornerRadius radarBackgrdCornerRadius = new CornerRadius(mRadarBackgrdOR);
+
+        [ObservableProperty]private double containerWidth = 400;
+
+        [ObservableProperty]private double containerHeight = 400;
+
+        [ObservableProperty]private BadgeColor backgroundColor = BadgeColor.Yellow;
+
+        [ObservableProperty]private double radarLeft = 50;
+
+        [ObservableProperty]private double radarRight = 50;
+
+
+
+
+
+        #endregion EndRegion-Infographic Properties, Commands and Private Methods
+
+
+
+
+        #region CommunityToolkitMethod Commands
 
         /// <summary>
         /// The CommunityToolkitMethod that gets ran after the view is loaded and running
@@ -216,10 +253,12 @@ namespace BlueberryAX.ViewModels
         [RelayCommand]
         private async Task LoadSettingsAsync()
         {
-                        ValidUsers = new ObservableCollection<UserModel>(await mValidUsersService.GetValidUsersAsync());
+            ValidUsers = new ObservableCollection<UserModel>(await mValidUsersService.GetValidUsersAsync());
+
         }
 
-        #endregion EndRegion-Public Commands
+        #endregion EndRegion-CommunityToolkitMethod Commands
+
 
 
         #region Constructors
@@ -244,3 +283,4 @@ namespace BlueberryAX.ViewModels
         #endregion EndRegion-Constructors
     }
 }
+
