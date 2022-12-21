@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Data;
+using Avalonia.Media;
 using BlueberryAX.DataModels;
 using BlueberryAX.Services;
 using CommunityToolkit.Mvvm.Collections;
@@ -215,6 +216,10 @@ namespace BlueberryAX.ViewModels
 
         private static double mRadarBackgrdOR = 120;
 
+        private static double mInfographicCenterX = mInfographicOR;
+
+        private static double mInfographicCenterY = mInfographicOR;
+
         [ObservableProperty]private double radarOD = mRadarBackgrdOR * 2;
 
         [ObservableProperty]private double infographicOD = mInfographicOR * 2;
@@ -224,6 +229,8 @@ namespace BlueberryAX.ViewModels
         [ObservableProperty]private double radarBackgrdOD = (mRadarBackgrdOR + 1) * 2;
 
         [ObservableProperty] private CornerRadius radarBackgrdCornerRadius = new CornerRadius(mRadarBackgrdOR);
+
+           
 
         [ObservableProperty]private double containerWidth = 400;
 
