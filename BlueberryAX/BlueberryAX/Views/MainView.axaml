@@ -13,7 +13,7 @@
 	<!-- UserControl Resources: Value Converters -->
 	<UserControl.Resources>
 		<valueConverters:CheckedToRotationConverter x:Key="CheckedToRotationConverter"></valueConverters:CheckedToRotationConverter>
-		<valueConverters:NullTextboxToSliderConverter x:Key="NullTextboxToSliderConverter"></valueConverters:NullTextboxToSliderConverter>
+		<valueConverters:NumberToCornerRadiusConverter x:Key="NumberToCornerRadiusConverter"></valueConverters:NumberToCornerRadiusConverter>
 
 	</UserControl.Resources>
 

@@ -6,10 +6,11 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BlueberryAX
 {
-    public class ContainerViewModel : BaseViewModel
+    public partial class ContainerViewModel : ObservableObject
     {
 
         #region Private properties
@@ -104,30 +105,32 @@ namespace BlueberryAX
         /// Short term insulin,
         /// Long term insulin
         /// </summary>
-        public UserRecordingsDataModel UserRecordings { get; set; }
+        [ObservableProperty] private UserRecordingsDataModel userRecordings;
 
         /// <summary>
         /// current infographic start time... currently they can only 
         /// be 00:00:00 or 12:00:00
         /// </summary>
-        public DateTime InfographicStartTime { get; set; }
+        [ObservableProperty]private DateTime infographicStartTime;
 
         /// <summary>
         /// The background graphics for the infographic
         /// </summary>
-        public BackgroundRadialGraphicViewModel BackGround { get; set; }
+        [ObservableProperty]private BackgroundRadialGraphicViewModel backGround;
 
         /// <summary>
         /// The foreground graphics for the infographic
         /// Todo: This isn't being used yet, it is converted
         /// back to MainBadges currently at the end of the refresh() method
         /// </summary>
-        public BaseRadialGraphicViewModel ForeGround { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel foreGround;
 
         /// <summary>
         /// The radar image for the background
         /// </summary>
-        public BaseRadialGraphicViewModel RadarGraphic { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel radarGraphic;
 
         /// <summary>
         /// The outside ring colored polygons that show glucose Recordings,
@@ -138,42 +141,50 @@ namespace BlueberryAX
         /// 'arm of the clock' graphic.  It should probably be seperated
         /// but I didn't want to screw up the wpf ui
         /// </summary>
-        public BaseRadialGraphicViewModel MainBadges { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel mainBadges;
 
         /// <summary>
         /// The LineArcs that represent minimum intensity Exersize
         /// </summary>
-        public BaseRadialGraphicViewModel MinimumIntensityExersizeArcs { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel minimumIntensityExersizeArcs;
 
         /// <summary>
         /// The outside LineArcs that represent low intensity Exersize
         /// </summary>
-        public BaseRadialGraphicViewModel LowIntensityExersizeArcs { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel lowIntensityExersizeArcs;
 
         /// <summary>
         /// The LineArcs that represent medium intensity Exersize
         /// </summary>
-        public BaseRadialGraphicViewModel MediumIntensityExersizeArcs { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel mediumIntensityExersizeArcs;
 
         /// <summary>
         /// The LineArcs that represent High intensity Exersize
         /// </summary>
-        public BaseRadialGraphicViewModel HighIntensityExersizeArcs { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel highIntensityExersizeArcs;
 
         /// <summary>
         /// The LineArcs that represent maximum intensity Exersize
         /// </summary>
-        public BaseRadialGraphicViewModel MaximumIntensityExersizeArcs { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel maximumIntensityExersizeArcs;
 
         /// <summary>
         /// The outside LineArcs that represent short term insulin availability
         /// </summary>
-        public BaseRadialGraphicViewModel ShortActings { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel shortActings;
 
         /// <summary>
         /// The inside lineArcs that represent long term insullin availability 
         /// </summary>
-        public BaseRadialGraphicViewModel LongActings { get; set; }
+        [ObservableProperty]
+        private BaseRadialGraphicViewModel longActings;
 
         public double RadarDiameter { get; set; } = 120 * 2;
 

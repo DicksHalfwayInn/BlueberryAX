@@ -86,13 +86,22 @@ namespace BlueberryAX.ViewModels
                     var i = 0;
                     foreach (var c in value)
                     {
-                        char ch = emailAddress[i];
-                        if (!(ch == c))
+                        if (i + 1 < emailAddress.Length )
                         {
-                            emailAddress = value[i].ToString();
+                            char ch = emailAddress[i];
+                            if (!(ch == c))
+                            {
+                                emailAddress = value[i].ToString();
+                                return;
+                            }
+                            i++;
+                        }
+                        else
+                        {
+                            emailAddress = value[i + 1].ToString();
                             return;
                         }
-                        i++;
+                        
                     }
                 }
 
@@ -212,37 +221,72 @@ namespace BlueberryAX.ViewModels
 
         #region Infographic Properties, Commands and Private Methods
 
+        // Infographic Outside Radius
         private static double mInfographicOR = 169;
 
-        private static double mRadarBackgrdOR = 120;
+        // The X coordinate for the center of the infographic
+        private static double mInfographicCenterX = mInfographicOR ;
 
-        private static double mInfographicCenterX = mInfographicOR;
+        // The Y coordinate for the center of the infographic
+        private static double mInfographicCenterY = mInfographicOR ;
 
-        private static double mInfographicCenterY = mInfographicOR;
+        // Radar graphic background Outside Radius
+        private static double mRadarBackgrdOR = 121;
 
-        [ObservableProperty]private double radarOD = mRadarBackgrdOR * 2;
+        // Radar graphic Outside Radius
+        private static double mRadarOR = 120;
 
+        /// <summary>
+        ///      Infographic-Backgrd Width / Height 
+        /// </summary>
         [ObservableProperty]private double infographicOD = mInfographicOR * 2;
 
-        [ObservableProperty]private CornerRadius infographicCornerRadius = new CornerRadius(mInfographicOR);
+        /// <summary>
+        ///      Infographic-Background Circle Corner Radius
+        /// </summary>
+        [ObservableProperty]private double infographicCornerRadius = mInfographicOR;
 
-        [ObservableProperty]private double radarBackgrdOD = (mRadarBackgrdOR + 1) * 2;
+        /// <summary>
+        ///      Infographic-Background Color
+        /// </summary>
+        [ObservableProperty]private string infographicBackgrdColor = "Gold";
 
-        [ObservableProperty] private CornerRadius radarBackgrdCornerRadius = new CornerRadius(mRadarBackgrdOR);
+        /// <summary>
+        ///      Radar-Background Circle Corner Radius
+        /// </summary>
+        [ObservableProperty]private double radarBackgrdCornerRadius = mRadarBackgrdOR;
 
-           
+        /// <summary>
+        ///      Radar-Background Width / Height
+        /// </summary>
+        [ObservableProperty]private double radarBackgrdOD = mRadarBackgrdOR * 2;
 
-        [ObservableProperty]private double containerWidth = 400;
+        /// <summary>
+        ///      Radar-Background Color
+        /// </summary>
+        [ObservableProperty] private string radarBackgrdColor = "Black";
 
-        [ObservableProperty]private double containerHeight = 400;
-
-        [ObservableProperty]private BadgeColor backgroundColor = BadgeColor.Yellow;
-
-        [ObservableProperty]private double radarLeft = 50;
-
-        [ObservableProperty]private double radarRight = 50;
+        /// <summary>
+        ///      Radar-Foreground Width / Height
+        /// </summary>
+        [ObservableProperty]private double radarForegrdOD = mRadarOR * 2;
 
 
+
+
+        #region Not used Properties
+
+        //[ObservableProperty]private double containerWidth = 400;
+
+        //[ObservableProperty]private double containerHeight = 400;
+
+        //[ObservableProperty]private BadgeColor backgroundColor = BadgeColor.Yellow;
+
+        //[ObservableProperty]private double radarLeft = 50;
+
+        //[ObservableProperty]private double radarRight = 50;
+
+        #endregion EndRegion-Not used Properties
 
 
 
@@ -251,7 +295,7 @@ namespace BlueberryAX.ViewModels
 
 
 
-        #region CommunityToolkitMethod Commands
+        #region CommunityToolkitMethod-LoadSettingsAsync Command
 
         /// <summary>
         /// The CommunityToolkitMethod that gets ran after the view is loaded and running
@@ -274,9 +318,11 @@ namespace BlueberryAX.ViewModels
         /// Default Constructor
         /// </summary>
         /// <param name="userService">The valid users service</param>
-        public MainViewModel(IValidUsersService userService)
+        public MainViewModel(IValidUsersService validUsersService)
         {
-            mValidUsersService = userService;
+            mValidUsersService = validUsersService;
+
+            var containerViewModel = new ContainerViewModel();
         }
 
         /// <summary>
