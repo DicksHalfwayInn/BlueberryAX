@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Data;
 using Avalonia.Media;
 using BlueberryAX.DataModels;
@@ -310,7 +311,7 @@ namespace BlueberryAX.ViewModels
 
         #endregion EndRegion-CommunityToolkitMethod Commands
 
-        [ObservableProperty] private List<BaseRadialGraphicSegmentViewModel> glucoseReadings;
+        [ObservableProperty] private AvaloniaList<BaseRadialGraphicSegmentViewModel> glucoseReadings = new();
 
         #region Constructors
 
@@ -324,7 +325,12 @@ namespace BlueberryAX.ViewModels
 
             var containerViewModel = new ContainerViewModel();
 
-           GlucoseReadings =  containerViewModel.BackGround.RadialGraphicSegments;
+            foreach(var RGS in containerViewModel.ForeGround.RadialGraphicSegments)
+            {
+                GlucoseReadings.Add( RGS);
+                if (GlucoseReadings.Count == 10) break;
+            }
+
         }
 
         /// <summary>

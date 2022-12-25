@@ -1,14 +1,17 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BlueberryAX
 {
-    public class BaseRadialGraphicSegmentViewModel
+    public partial class BaseRadialGraphicSegmentViewModel : BaseGraphicViewModel
     {
         #region Public Properties
 
         #region UI
+
+        [ObservableProperty] private string segmentText = "SegmentText";
 
         public double Width { get; set; }
         public double Height { get; set; }

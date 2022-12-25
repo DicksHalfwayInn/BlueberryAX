@@ -6,6 +6,7 @@
 			 xmlns:controls="using:BlueberryAX.Controls"
 			 xmlns:viewModels="using:BlueberryAX"
 			 xmlns:valueConverters="using:BlueberryAX.ValueConverters"
+			 xmlns:system="clr-namespace:System;assembly=mscorlib"
              x:Class="BlueberryAX.Views.InfographicUIControl">
 
 	<!-- UserControl Resources: Value Converters -->
@@ -131,15 +132,15 @@
 				MinHeight="{Binding ContainerHeight}"-->
 
 				<!-- Background Yellow Circle -->
-<Border
-	Width="{Binding InfographicOD}"
-	Height="{Binding InfographicOD}"
-	Background="{Binding InfographicBackgrdColor}"
-	CornerRadius="{Binding InfographicCornerRadius, Converter={StaticResource NumberToCornerRadiusConverter}}"
-	HorizontalAlignment="Center"
-	VerticalAlignment="Center"
+				<Border
+					Width="{Binding InfographicOD}"
+					Height="{Binding InfographicOD}"
+					Background="{Binding InfographicBackgrdColor}"
+					CornerRadius="{Binding InfographicCornerRadius, Converter={StaticResource NumberToCornerRadiusConverter}}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
 	>
-</Border>
+				</Border>
 
 				<Border
 					Width="{Binding RadarBackgrdOD}"
@@ -150,26 +151,104 @@
 					VerticalAlignment="Center"
 					ZIndex="1">
 				</Border>
-				
-				
-				<Canvas HorizontalAlignment="Center" VerticalAlignment="Center">
-					<ItemsControl
+
+
+				<Canvas HorizontalAlignment="Center" VerticalAlignment="Center" ZIndex="10">
+
+					<ItemsControl Foreground="Lime"
 						Items="{Binding GlucoseReadings}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Button Content="{Binding ArcString}" Margin="0,0,5,5" />
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+
+						
+
+						
+					<!--<Label Content="{Binding GlucoseReadings.ArcString}" />-->
 					
-					
+
 					</ItemsControl>
-					
-					
-				
+
+					<!--<ItemsControl
+						Items="{Binding GlucoseReadings}">
+
+						<Path Fill="OrangeRed" Canvas.Left="0" Canvas.Top="0">
+
+
+							<Path.Data>
+
+								<PathGeometry>
+									<PathFigure StartPoint="0,0" IsClosed="True">
+										<QuadraticBezierSegment Point1="50,0" Point2="50,-50" />
+										<QuadraticBezierSegment Point1="100,-50" Point2="100,0" />
+										<LineSegment Point="50,0" />
+										<LineSegment Point="50,50" />
+									</PathFigure>
+								</PathGeometry>
+							</Path.Data>
+						</Path>-->
+						<!--<Path>-->
+						<!--<PathFigure StartPoint="{Binding Points[0]}">
+							<LineSegment Point="{Binding Points[1]}" />
+							<ArcSegment
+								SweepDirection="Clockwise"
+								Size="{Binding Sizes[0]}"
+								Point="{Binding Points[2]}" />
+							<LineSegment Point="{Binding Points[3]}" />
+							<ArcSegment
+								SweepDirection="CounterClockwise"
+								Size="{Binding Sizes[1]}"
+								Point="{Binding Points[4]}" />
+
+						</PathFigure>-->
+						<!--</Path>-->
+					<!--</ItemsControl>-->
+
+
+
+
+
+
+
+
+
+
+
+
+					<!--<Path Fill="OrangeRed" Canvas.Left="0" Canvas.Top="0">
+
+
+							<Path.Data>
+
+								<PathGeometry>
+									<PathFigure StartPoint="0,0" IsClosed="True">
+										<QuadraticBezierSegment Point1="50,0" Point2="50,-50" />
+										<QuadraticBezierSegment Point1="100,-50" Point2="100,0" />
+										<LineSegment Point="50,0" />
+										<LineSegment Point="50,50" />
+									</PathFigure>
+								</PathGeometry>
+							</Path.Data>
+						</Path>-->
+
+
+
+
+
+
+
+
 				</Canvas>
-<!--<Canvas>
+				<!--<Canvas>
 	
 </Canvas>-->
-			
-				
-				
-			
-			
+
+
+
+
+
 			</Grid>
 
 

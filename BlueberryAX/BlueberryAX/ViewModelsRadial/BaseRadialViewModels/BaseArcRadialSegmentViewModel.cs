@@ -1,4 +1,6 @@
 ﻿using Avalonia;
+using Avalonia.Collections;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,14 +9,21 @@ using System.Windows;
 
 namespace BlueberryAX
 {
-    public class BaseArcRadialSegmentViewModel : BaseRadialGraphicSegmentViewModel
+    public partial class BaseArcRadialSegmentViewModel : BaseRadialGraphicSegmentViewModel
     {
         #region Public Properties
 
+        [ObservableProperty] private static string arcString = "Arcaslk;djfString";
+
+        [ObservableProperty]private AvaloniaList<string> avaloniaListOfStringTest = new AvaloniaList<string>("Dog", "Cat", "Rat");
+
         #region UI
 
-        public ObservableCollection<Point> Points { get; set; }
-        public ObservableCollection<Size> Sizes { get; set; }
+        [ObservableProperty] private AvaloniaList<Point> points;
+        [ObservableProperty] private AvaloniaList<Size> sizes;
+
+        //public ObservableCollection<Point> Points { get; set; }
+        //public ObservableCollection<Size> Sizes { get; set; }
 
         #endregion
 

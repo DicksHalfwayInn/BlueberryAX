@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BlueberryAX
 {
-    public class BaseGraphicViewModel : BaseViewModel
+    public partial class BaseGraphicViewModel : BaseViewModel
     {
 
         #region Public Properties
