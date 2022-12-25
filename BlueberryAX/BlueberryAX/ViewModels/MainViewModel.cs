@@ -310,7 +310,7 @@ namespace BlueberryAX.ViewModels
 
         #endregion EndRegion-CommunityToolkitMethod Commands
 
-
+        [ObservableProperty] private List<BaseRadialGraphicSegmentViewModel> glucoseReadings;
 
         #region Constructors
 
@@ -323,6 +323,8 @@ namespace BlueberryAX.ViewModels
             mValidUsersService = validUsersService;
 
             var containerViewModel = new ContainerViewModel();
+
+           GlucoseReadings =  containerViewModel.BackGround.RadialGraphicSegments;
         }
 
         /// <summary>

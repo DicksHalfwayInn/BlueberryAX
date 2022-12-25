@@ -153,7 +153,11 @@
 				
 				
 				<Canvas HorizontalAlignment="Center" VerticalAlignment="Center">
+					<ItemsControl
+						Items="{Binding GlucoseReadings}">
 					
+					
+					</ItemsControl>
 					
 					
 				

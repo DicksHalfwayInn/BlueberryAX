@@ -42,7 +42,7 @@ namespace BlueberryAX
             PopulateRadialGraphicSegmentsPropertyCommand = 
                 new RelayCommand(PopulateRadialGraphicSegmentsProperty);
 
-            RadialGraphicSegments = new ObservableCollection<BaseRadialGraphicSegmentViewModel>();
+            RadialGraphicSegments = new List<BaseRadialGraphicSegmentViewModel>();
 
             //PopulateRadialGraphicSegmentsProperty();
         }
@@ -62,7 +62,7 @@ namespace BlueberryAX
         public virtual void PopulateRadialGraphicSegmentsProperty()
         {
             // Initiating the annotation
-            RadialGraphicSegments = new ObservableCollection<BaseRadialGraphicSegmentViewModel>();
+            RadialGraphicSegments = new List<BaseRadialGraphicSegmentViewModel>();
 
             /// The number of degrees each group will extend through after subtracting the
             /// group clearance before and after the group

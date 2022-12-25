@@ -65,7 +65,7 @@ namespace BlueberryAX
         private void PopulateTheArcLine()
         {
             // Initiating the annotation
-            RadialGraphicSegments = new ObservableCollection<BaseRadialGraphicSegmentViewModel>();
+            RadialGraphicSegments = new List<BaseRadialGraphicSegmentViewModel>();
 
             /// The number of degrees each group will extend through after subtracting the
             /// group clearance before and after the group

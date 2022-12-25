@@ -13,7 +13,7 @@ namespace BlueberryAX
         /// <summary>
         /// The annotation around the handle
         /// </summary>
-        public ObservableCollection<BaseRadialGraphicSegmentViewModel> RadialGraphicSegments { get; set; }
+        public List<BaseRadialGraphicSegmentViewModel> RadialGraphicSegments { get; set; }
 
         public double ContainerWidth { get; set; } = 400;
 
