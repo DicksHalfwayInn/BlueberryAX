@@ -19,8 +19,8 @@ namespace BlueberryAX
 
         #region UI
 
-        [ObservableProperty] private AvaloniaList<Point> points;
-        [ObservableProperty] private AvaloniaList<Size> sizes;
+        [ObservableProperty] private ObservableCollection<Point> points;
+        [ObservableProperty] private ObservableCollection<Size> sizes;
 
         //public ObservableCollection<Point> Points { get; set; }
         //public ObservableCollection<Size> Sizes { get; set; }
