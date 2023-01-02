@@ -311,7 +311,7 @@ namespace BlueberryAX.ViewModels
 
         #endregion EndRegion-CommunityToolkitMethod Commands
 
-        [ObservableProperty] private AvaloniaList<BaseRadialGraphicSegmentViewModel> glucoseReadings = new();
+        [ObservableProperty] private ObservableCollection<BaseRadialGraphicSegmentViewModel> glucoseReadings = new();
 
         #region Constructors
 
@@ -328,7 +328,7 @@ namespace BlueberryAX.ViewModels
             foreach(var RGS in containerViewModel.ForeGround.RadialGraphicSegments)
             {
                 GlucoseReadings.Add( RGS);
-                if (GlucoseReadings.Count == 10) break;
+                if (GlucoseReadings.Count == 5) break;
             }
 
         }

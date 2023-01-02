@@ -153,21 +153,33 @@
 				</Border>
 
 
+
+
 				<Canvas HorizontalAlignment="Center" VerticalAlignment="Center" ZIndex="10">
 
 					<ItemsControl Foreground="Lime"
 						Items="{Binding GlucoseReadings}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<Button Content="{Binding ArcString}" Margin="0,0,5,5" />
+								<StackPanel>
+									<Button Content="{Binding ArcString}" Margin="0,0,5,5" />
+									<Label Content="SpacerLabel" />
+									<!--<ItemsControl Foreground="Orange"
+												  Items="{Binding AvaloniaListOfStringTest}">
+
+										<Label Content="{Binding }" />
+
+									</ItemsControl>-->
+								</StackPanel>
+
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 
-						
 
-						
-					<!--<Label Content="{Binding GlucoseReadings.ArcString}" />-->
-					
+
+
+						<!--<Label Content="{Binding GlucoseReadings.ArcString}" />-->
+
 
 					</ItemsControl>
 
@@ -189,8 +201,8 @@
 								</PathGeometry>
 							</Path.Data>
 						</Path>-->
-						<!--<Path>-->
-						<!--<PathFigure StartPoint="{Binding Points[0]}">
+					<!--<Path>-->
+					<!--<PathFigure StartPoint="{Binding Points[0]}">
 							<LineSegment Point="{Binding Points[1]}" />
 							<ArcSegment
 								SweepDirection="Clockwise"
@@ -203,7 +215,7 @@
 								Point="{Binding Points[4]}" />
 
 						</PathFigure>-->
-						<!--</Path>-->
+					<!--</Path>-->
 					<!--</ItemsControl>-->
 
 

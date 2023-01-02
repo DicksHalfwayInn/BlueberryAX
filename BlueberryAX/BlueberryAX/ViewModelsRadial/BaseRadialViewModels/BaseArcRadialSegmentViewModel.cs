@@ -15,7 +15,8 @@ namespace BlueberryAX
 
         [ObservableProperty] private static string arcString = "Arcaslk;djfString";
 
-        [ObservableProperty]private AvaloniaList<string> avaloniaListOfStringTest = new AvaloniaList<string>("Dog", "Cat", "Rat");
+        [ObservableProperty] private ObservableCollection<string> avaloniaListOfStringTest =
+            new (){"Dog", "Cat", "Rat"};
 
         #region UI
 
@@ -26,7 +27,7 @@ namespace BlueberryAX
         //public ObservableCollection<Size> Sizes { get; set; }
 
         #endregion
-
+        
         /// <summary>
         /// The text that should be shown in this annotation
         /// </summary>
