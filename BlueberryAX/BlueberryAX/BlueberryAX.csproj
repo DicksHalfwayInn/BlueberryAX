@@ -25,10 +25,4 @@
     <Folder Include="Resources\" />
     <Folder Include="ViewModelsRadial\BaseRadialViewModels\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\LoginView.axaml.cs">
-      <DependentUpon>LoginView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
