@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BlueberryAX
 {
-    public class ExersizeRecordingDataModel : BaseViewModel
+    public class ExersizeRecordingDataModel 
     {
         #region Public properties
 

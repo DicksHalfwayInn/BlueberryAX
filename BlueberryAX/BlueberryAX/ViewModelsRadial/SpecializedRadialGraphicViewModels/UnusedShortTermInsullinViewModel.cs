@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace BlueberryAX
 {
-    public class ArcGradialDottedLineWithTextViewModel : BaseRadialGraphicViewModel
+    public class UnusedShortTermInsullinViewModel : BaseRadialGraphicViewModel
     {
-        public ArcGradialDottedLineWithTextViewModel()
+        public UnusedShortTermInsullinViewModel()
         {
             NumberOfGroups = 3;
 

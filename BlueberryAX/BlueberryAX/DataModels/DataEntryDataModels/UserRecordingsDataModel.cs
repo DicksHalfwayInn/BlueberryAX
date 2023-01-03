@@ -7,7 +7,7 @@ namespace BlueberryAX
     /// <summary>
     /// Represents all the entries for a user
     /// </summary>
-    public class UserRecordingsDataModel : BaseViewModel
+    public class UserRecordingsDataModel 
     {
         public List<GlucoseLevelRecordingDataModel> GlucoseLevelRecordings { get; set; }
         = new List<GlucoseLevelRecordingDataModel>();

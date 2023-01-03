@@ -6,7 +6,7 @@ namespace BlueberryAX
     /// <summary>
     /// a basic command that runs an aciotn
     /// </summary>
-    public class RelayCommand : ICommand
+    public class aRelayCommand : ICommand
     {
         #region Private Members
 
@@ -44,7 +44,7 @@ namespace BlueberryAX
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RelayCommand(Action action)
+        public aRelayCommand(Action action)
         {
             mAction = action;
         }
@@ -54,7 +54,7 @@ namespace BlueberryAX
         /// </summary>
         /// <param name="executeMethod"></param>
         /// <param name="canExecuteMethod"></param>
-        public RelayCommand(Action executeMethod, Func<bool> canExecuteMethod)
+        public aRelayCommand(Action executeMethod, Func<bool> canExecuteMethod)
         {
             mAction = executeMethod;
             mTargetCanExecuteMethod = canExecuteMethod;

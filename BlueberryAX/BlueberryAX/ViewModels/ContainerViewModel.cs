@@ -1,12 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BlueberryAX
 {
@@ -416,7 +411,7 @@ namespace BlueberryAX
         private void AddWhiteOutsideRingToBackground()
         {
             /// create a ring given the inner and out radii and assign a color
-            var whiteBackgroundRing = new RingFullFilledViewModel()
+            var whiteBackgroundRing = new GlucoseBackgroundViewModel()
             {
                 ContainerHeight = this.ContainerHeight,
                 ContainerWidth = this.ContainerWidth,
@@ -467,7 +462,7 @@ namespace BlueberryAX
             RadarGraphic.AddGraphics(crosshairsGraphic);
 
             /// generate graphic for innermost circle of the radar
-            var innerRadarCircle = new CircleFullLineViewModel()
+            var innerRadarCircle = new RadarCirclesViewModel()
             {
                 ContainerHeight = this.ContainerHeight,
                 ContainerWidth = this.ContainerWidth,
@@ -483,7 +478,7 @@ namespace BlueberryAX
             RadarGraphic.AddGraphics(innerRadarCircle);
 
             /// generate graphic for middle circle of the radar
-            var middleRadarCircle = new CircleFullLineViewModel()
+            var middleRadarCircle = new RadarCirclesViewModel()
             {
                 ContainerHeight = this.ContainerHeight,
                 ContainerWidth = this.ContainerWidth,
@@ -499,7 +494,7 @@ namespace BlueberryAX
             RadarGraphic.AddGraphics(middleRadarCircle);
 
             /// generate graphic for outermost circle of the radar
-            var outsideRadarCircle = new CircleFullLineViewModel()
+            var outsideRadarCircle = new RadarCirclesViewModel()
             {
                 ContainerHeight = this.ContainerHeight,
                 ContainerWidth = this.ContainerWidth,
@@ -964,7 +959,7 @@ namespace BlueberryAX
                     var to = from + insulinRecording.Duration.Hours%12 * 30;
 
                     //// NOTE: Testing the shortacting line
-                    ShortActings = new ArcGradialDottedLineWithTextViewModel()
+                    ShortActings = new ShortTermInsulinViewModel()
                     {
                         ContainerHeight = this.ContainerHeight,
                         ContainerWidth = this.ContainerWidth,
@@ -980,7 +975,7 @@ namespace BlueberryAX
 
                     ForeGround.AddGraphics(ShortActings);
 
-                    return;
+                    //return;
 
                     /// check to see if we are in the correct am/pm time period
                     if ((insulinRecording.StartTime.Hour < 12 && MorningOrNight == AMPMEnum.AM
@@ -1068,7 +1063,7 @@ namespace BlueberryAX
         {
 
             //// NOTE: Testing the shortacting line
-            LongActings = new ArcLineWithTextViewModel()
+            LongActings = new LongTermInsulinViewModel()
             {
                 ContainerHeight = this.ContainerHeight,
                 ContainerWidth = this.ContainerWidth,

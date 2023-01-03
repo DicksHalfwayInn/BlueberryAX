@@ -7,14 +7,14 @@ namespace BlueberryAX
     /// <summary>
     ///  The outline/circumference of a circle... not filled or solid
     /// </summary>
-    public class CircleFullLineViewModel : BaseRadialGraphicViewModel
+    public class RadarCirclesViewModel : BaseRadialGraphicViewModel
     {
         /// <summary>
         /// An unfilled circle with a line thickness determined 
         /// by the difference between the inside and outside radii.
         /// argueably... a skinny 'RingFullFilledViewModel'.
                 /// </summary>
-        public CircleFullLineViewModel()
+        public RadarCirclesViewModel()
         {
             NumberOfGroups = 1;
             NumberOfChildrenInGroup = 2;

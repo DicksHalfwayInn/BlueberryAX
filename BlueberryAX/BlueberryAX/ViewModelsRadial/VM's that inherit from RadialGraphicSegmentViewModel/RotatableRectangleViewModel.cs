@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlueberryAX
 {
-    public class RotatableRectangleViewModel : BaseRadialGraphicSegmentViewModel
+    public class aRotatableRectangleViewModel : BaseRadialGraphicSegmentViewModel
     {
     }
 }

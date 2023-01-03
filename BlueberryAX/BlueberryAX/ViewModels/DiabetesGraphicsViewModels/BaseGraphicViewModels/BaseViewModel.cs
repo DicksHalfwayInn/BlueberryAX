@@ -21,7 +21,7 @@ namespace BlueberryAX
     //[AddINotifyPropertyChangedInterface]
 
     //public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
-    public partial class BaseViewModel : ObservableObject
+    public partial class aBaseViewModel : ObservableObject
 
     {
 

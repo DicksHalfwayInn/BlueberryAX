@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,10 +10,12 @@ using System.Windows.Input;
 
 namespace BlueberryAX
 {
-    public class BaseRadialGraphicViewModel : BaseGraphicViewModel
+    public partial class BaseRadialGraphicViewModel : BaseGraphicViewModel
     {
 
         #region Public Properties
+
+        [ObservableProperty] private string segmentText = "SegmentText";
 
         /// <summary>
         /// The annotation around the handle

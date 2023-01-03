@@ -4,10 +4,10 @@ using System.Text;
 
 namespace BlueberryAX
 {
-    public class RingFullFilledViewModel : BaseRadialGraphicViewModel
+    public class GlucoseBackgroundViewModel : BaseRadialGraphicViewModel
     {
 
-        public RingFullFilledViewModel()
+        public GlucoseBackgroundViewModel()
         {
             ChildClearance = 0;
             GroupClearance = 0;

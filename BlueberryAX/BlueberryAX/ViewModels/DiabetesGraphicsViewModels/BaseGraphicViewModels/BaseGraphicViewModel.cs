@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
 namespace BlueberryAX
 {
-    public partial class BaseGraphicViewModel : BaseViewModel
+    public partial class BaseGraphicViewModel : ObservableObject
     {
 
         #region Public Properties

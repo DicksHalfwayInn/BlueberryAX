@@ -16,6 +16,7 @@
 
 	<!--Main Grid for the Page-->
 	<Grid Background="Gainsboro">
+		
 		<!--Column Definitions-->
 		<Grid.RowDefinitions>
 			<!-- Row definitions for the date picker 

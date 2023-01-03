@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace BlueberryAX
 {
-    public class ArcLineWithTextViewModel : BaseRadialGraphicViewModel
+    public class LongTermInsulinViewModel : BaseRadialGraphicViewModel
     {
-        public ArcLineWithTextViewModel()
+        public LongTermInsulinViewModel()
         {
             NumberOfGroups = 1;
 
