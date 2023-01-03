@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
@@ -41,9 +42,11 @@ namespace BlueberryAX
 
         public BaseRadialGraphicViewModel()
         {
+            /// TODO:  this method doesn't need to be a relay command I don't think unless it is used for
+            ///        the view????
 
-            PopulateRadialGraphicSegmentsPropertyCommand = 
-                new RelayCommand(PopulateRadialGraphicSegmentsProperty);
+            //PopulateRadialGraphicSegmentsPropertyCommand =
+            //    new RelayCommand(PopulateRadialGraphicSegmentsProperty);
 
             RadialGraphicSegments = new List<BaseRadialGraphicSegmentViewModel>();
 

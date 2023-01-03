@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Linq;
 using System.Windows.Input;
@@ -202,92 +203,9 @@ namespace BlueberryAX
         #region Public Commands
 
         /// <summary>
-        /// The command to generate the infographic
-        /// </summary>
-        public ICommand RefreshCommand { get; set; }
-
-        /// <summary>
-        /// A command that toggles the AM and PM button
-        /// on the main infographic
-        /// </summary>
-        public ICommand ToggleAmAndPmCommand { get; set; }
-
-        /// <summary>
         /// command to change the infographic back 12 hours
         /// </summary>
-        public ICommand GoBack12HoursCommand { get; set; }
-
-        /// <summary>
-        /// command to change the infographic back 24 hours
-        /// </summary>
-        public ICommand GoBack24HoursCommand { get; set; }
-
-        /// <summary>
-        /// command to change the infographic forward 12 hours
-        /// </summary>
-        public ICommand GoForward12HoursCommand { get; set; }
-
-        /// <summary>
-        /// command to change the infographic forward 12 hours
-        /// </summary>
-        public ICommand GoForward24HoursCommand { get; set; }
-
-
-
-        #endregion
-
-        #region Default Constructor
-
-        public ContainerViewModel()
-        {
-            /// Set the AM and PM setting to AM
-            MorningOrNight = AMPMEnum.AM;
-
-            /// Load the User Records ( TODO:currently dummy data)
-            UserRecordings = new UserRecordingsDataModel();
-
-            ///
-            /// Initialize the Relay Commands
-            /// 
-            /// The command to generate the infographic
-            RefreshCommand = new RelayCommand(Refresh);
-
-            /// Command to toggle between AM and PM
-            ToggleAmAndPmCommand = new RelayCommand(()=> {
-
-                ToggleAmAndPm();
-
-                /// Calls the refresh method to generate the infographic
-                Refresh();
-            }
-            );
-
-            /// Command to jump back 12 hours
-            GoBack12HoursCommand = new RelayCommand(GoBack12Hours);
-
-            /// Command to jump back 12 hours
-            GoBack24HoursCommand = new RelayCommand(GoBack24Hours);
-
-            /// Command to jump forward 12 hours
-            GoForward12HoursCommand = new RelayCommand(GoForward12Hours);
-
-            /// Command to jump forward 24 hours
-            GoForward24HoursCommand = new RelayCommand(GoForward24Hours);
-
-            /// Set the current date to today's date
-            CurrentDateToShow = DateTime.Now;
-
-            /// Calls the refresh method to generate the infographic
-            //Refresh();
-        }
-
-        #endregion
-
-        #region Helping Methods
-
-        /// <summary>
-        /// change the infographic to 12 hours previous
-        /// </summary>
+        [RelayCommand]
         public void GoBack12Hours()
         {
             /// Check if it is morning, if so, then make the current day, yesterday
@@ -310,8 +228,9 @@ namespace BlueberryAX
         }
 
         /// <summary>
-        /// change the infographic to 24 hours previous
+        /// command to change the infographic back 24 hours
         /// </summary>
+        [RelayCommand]
         public void GoBack24Hours()
         {
             /// Set the current date to show to one day prior
@@ -322,8 +241,9 @@ namespace BlueberryAX
         }
 
         /// <summary>
-        /// change the infographic to 12 hours forward in time
+        /// command to change the infographic forward 12 hours
         /// </summary>
+        [RelayCommand]
         public void GoForward12Hours()
         {
             /// Check if it is afternoon, if so, then make the current day, tomorrow
@@ -333,21 +253,22 @@ namespace BlueberryAX
                 ToggleAmAndPm();
 
                 CurrentDateToShow = CurrentDateToShow.AddDays(1);
-                
+
             }
             else
             {
                 /// Command to toggle between AM and PM
                 ToggleAmAndPm();
-                
+
                 /// Calls the refresh method to generate the infographic
                 Refresh();
             }
         }
 
         /// <summary>
-        /// change the infographic to 24 hours forward in time
+        /// command to change the infographic forward 12 hours
         /// </summary>
+        [RelayCommand]
         public void GoForward24Hours()
         {
             /// set the current date to show to one day in the future
@@ -358,8 +279,10 @@ namespace BlueberryAX
         }
 
         /// <summary>
-        /// Switches the AM and PM property...
+        /// A command that toggles the AM and PM button
+        /// on the main infographic
         /// </summary>
+        [RelayCommand]
         public void ToggleAmAndPm()
         {
             /// ToDo: I know there is a better way to do this
@@ -367,12 +290,16 @@ namespace BlueberryAX
             if (MorningOrNight == AMPMEnum.AM) { MorningOrNight = AMPMEnum.PM; }
             else { MorningOrNight = AMPMEnum.AM; }
 
+            /// Calls the refresh method to generate the infographic
+            Refresh();
+
         }
 
         /// <summary>
         /// The method to generate all the view models that are used in
         /// the WPF UI controls and pages
         /// </summary>
+        [RelayCommand]
         private void Refresh()
         {
             UserRecordings = new UserRecordingsDataModel();
@@ -401,6 +328,35 @@ namespace BlueberryAX
             /// add foreground stuff to MainBadges
             AddForgroundGraphicStuff();
         }
+
+
+
+        #endregion
+
+        #region Default Constructor
+
+        public ContainerViewModel()
+        {
+            /// Set the AM and PM setting to AM
+            MorningOrNight = AMPMEnum.AM;
+
+            /// Load the User Records ( TODO:currently dummy data)
+            UserRecordings = new UserRecordingsDataModel();
+
+            
+
+            /// Set the current date to today's date
+            CurrentDateToShow = DateTime.Now;
+
+            /// Calls the refresh method to generate the infographic
+            //Refresh();
+        }
+
+        #endregion
+
+        #region Helping Methods
+
+
 
 
         ///
